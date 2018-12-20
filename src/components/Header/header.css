@@ -1,0 +1,19 @@
+.Header {
+  align-self: end;
+}
+
+@media screen and (min-width: 768px) {
+  .Header {
+    align-self: end;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .Header {
+    grid-row: 2 / 2;
+    align-self: start;
+    justify-self: center;
+
+    padding: 1em 1em 0 0;
+  }
+}
