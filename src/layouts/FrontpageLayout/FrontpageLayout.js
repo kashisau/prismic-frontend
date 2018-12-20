@@ -1,13 +1,13 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import { StaticQuery, graphql } from 'gatsby'
 
 import './frontpage-layout.css'
 
-const FrontpageLayout = ({ children }) => {
-  const articleRef = React.createRef();
-  const shadow = mouseEvent => {
-    const article = articleRef.current;
+class FrontpageLayout extends React.Component {
+  articleRef = React.createRef();
+
+  shadow = mouseEvent => {
+    const article = this.articleRef.current;
 
     const mediaQueryMatches = window.matchMedia('screen and (min-width: 768px)');
     if ( ! mediaQueryMatches.matches) {
@@ -45,30 +45,34 @@ const FrontpageLayout = ({ children }) => {
     article.style.transform = `${rotateXString} ${rotateYString}`;
   }
 
-  window.addEventListener('resize', shadow);
+  componentDidMount() {
+    window.addEventListener('resize', this.shadow);
+  }
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.shadow);
+  }
 
-  return (
-    <StaticQuery
-      query={graphql`
-        query SiteTitleQuery {
-          site {
-            siteMetadata {
-              title
+  render() {
+    const { children } = this.props;
+    return (
+      <StaticQuery
+        query={graphql`
+          query SiteTitleQuery {
+            site {
+              siteMetadata {
+                title
+              }
             }
           }
-        }
-      `}
-      render={data => (
-          <article className="PageMain" onMouseMove={shadow} ref={articleRef}>
-          {children}
-          </article>
-      )}
-    />
-  )
-}
-
-FrontpageLayout.propTypes = {
-  children: PropTypes.node.isRequired
+        `}
+        render={data => (
+            <article className="PageMain" onMouseMove={this.shadow} ref={this.articleRef}>
+            {children}
+            </article>
+        )}
+      />
+    );
+  }
 }
 
 export default FrontpageLayout
