@@ -112,7 +112,8 @@ a:hover {
     align-self: center;
     align-items: center;
     background: radial-gradient(at top left, #EAE9EF, #F5F5F5);
-
+    /** Lift this element up from the background to prevent clipping. **/
+    -webkit-transform: translateZ(100vh);
     box-shadow: 1px 1px 60px rgba(0,0,0,0.5);
     margin: 2rem;
     grid-template-columns: auto;
