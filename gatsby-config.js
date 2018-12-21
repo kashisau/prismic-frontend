@@ -3,8 +3,8 @@ require('dotenv').config({path: `./.env.${env}`});
 
 module.exports = {
   siteMetadata: {
-    title: 'Website 2018',
-    description: 'Kick off your next, great Gatsby project with this default starter. This barebones starter ships with the main Gatsby configuration files you might need.',
+    title: 'Kashi Samaraweera — Web application developer',
+    description: 'A web application developer from Sydney, Australia',
     author: 'Kashi Samaraweera',
   },
   plugins: [/*
