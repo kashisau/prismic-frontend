@@ -11,7 +11,7 @@ const IndexPage = ({data}) => {
   return (<FrontpageLayout>
     <Header siteTitle={title.text} subtitle={subtitle.text} />
     <section className="MainBody" dangerouslySetInnerHTML={{ __html: body.html}} />
-    <Seo title="Home" keywords={['gatsby', 'application', 'react']} />
+    <Seo title={title.text} />
   </FrontpageLayout>)
 }
 

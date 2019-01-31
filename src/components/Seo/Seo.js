@@ -2,12 +2,20 @@ import React from 'react'
 import Helmet from 'react-helmet'
 import { StaticQuery, graphql } from 'gatsby'
 
-const Seo = ({ data }) => {
-  const siteMetadata = data.allPrismicSiteMetadata.edges[0].node.data;
-  const { site_name: titleObj, site_description: descriptionObj, keywordsObj } = siteMetadata;
-  const title = titleObj.text;
-  const description = descriptionObj.text;
-  const keywords = keywordsObj;
+const Seo = ({ siteMetadata, title, description, author, keywords }) => {
+  const siteMetadataObj = siteMetadata.allPrismicSiteMetadata.edges["0"].node.data;
+  const { site_name: titleObj, site_description: descriptionObj, keywords: keywordsObj, author: authorObj } = siteMetadataObj;
+
+  const siteTitle = titleObj.text;
+  const siteDescription = descriptionObj.text;
+  const siteKeywords = keywordsObj;
+  const siteAuthor = authorObj.text;
+
+  const titleTag = title || siteTitle;
+  const descriptionTag = description || siteDescription;
+  const authorTag = author || siteAuthor;
+  const keywordsTag = keywords || siteKeywords;
+
   const lang = "en-AU";
 
   return (
@@ -15,20 +23,19 @@ const Seo = ({ data }) => {
       htmlAttributes={{
         lang,
       }}
-      title={title}
-      titleTemplate={`%s | ${data.site.siteMetadata.title}`}
+      title={titleTag}
       meta={[
         {
           name: 'description',
-          content: description,
+          content: descriptionTag,
         },
         {
           property: 'og:title',
-          content: title,
+          content: titleTag,
         },
         {
           property: 'og:description',
-          content: description,
+          content: descriptionTag,
         },
         {
           property: 'og:type',
@@ -40,35 +47,28 @@ const Seo = ({ data }) => {
         },
         {
           name: 'twitter:creator',
-          content: data.site.siteMetadata.author,
+          content: authorTag,
         },
         {
           name: 'twitter:title',
-          content: title,
+          content: titleTag,
         },
         {
           name: 'twitter:description',
-          content: description,
+          content: descriptionTag,
         },
       ]
         .concat(
-          keywords.length > 0
+          keywordsTag.length > 0
             ? {
                 name: 'keywords',
-                content: keywords.join(', '),
+                content: keywordsTag.join(', '),
               }
             : []
         )}
     />
   )
 }
-
-export default props => (
-  <StaticQuery
-    query={query}
-    render={data => <Seo data={data} {...props} />}
-  />
-)
 
 export const query = graphql`
 query SiteMetatdataQuery {
@@ -85,9 +85,20 @@ query SiteMetatdataQuery {
           keywords {
             text
           }
+          author {
+            text
+          }
         }
       }
     }
   }
 }
 `
+
+export default props => (
+  <StaticQuery
+    query={query}
+    render={siteMetadata => <Seo siteMetadata={siteMetadata} {...props} />}
+  />
+)
+
