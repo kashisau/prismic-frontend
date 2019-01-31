@@ -1,96 +1,104 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import Helmet from 'react-helmet'
 import { StaticQuery, graphql } from 'gatsby'
 
-function Seo({ description, lang, meta, keywords, title }) {
+const Seo = ({ siteMetadata, title, description, author, keywords }) => {
+  const siteMetadataObj = siteMetadata.allPrismicSiteMetadata.edges["0"].node.data;
+  const { site_name: titleObj, site_description: descriptionObj, keywords: keywordsObj, author: authorObj } = siteMetadataObj;
+
+  const siteTitle = titleObj.text;
+  const siteDescription = descriptionObj.text;
+  const siteKeywords = keywordsObj;
+  const siteAuthor = authorObj.text;
+
+  const titleTag = title || siteTitle;
+  const descriptionTag = description || siteDescription;
+  const authorTag = author || siteAuthor;
+  const keywordsTag = keywords || siteKeywords;
+
+  const lang = "en-AU";
+
   return (
-    <StaticQuery
-      query={detailsQuery}
-      render={data => {
-        const metaDescription =
-          description || data.site.siteMetadata.description
-        return (
-          <Helmet
-            htmlAttributes={{
-              lang,
-            }}
-            title={title}
-            titleTemplate={`%s | ${data.site.siteMetadata.title}`}
-            meta={[
-              {
-                name: 'description',
-                content: metaDescription,
-              },
-              {
-                property: 'og:title',
-                content: title,
-              },
-              {
-                property: 'og:description',
-                content: metaDescription,
-              },
-              {
-                property: 'og:type',
-                content: 'website',
-              },
-              {
-                name: 'twitter:card',
-                content: 'summary',
-              },
-              {
-                name: 'twitter:creator',
-                content: data.site.siteMetadata.author,
-              },
-              {
-                name: 'twitter:title',
-                content: title,
-              },
-              {
-                name: 'twitter:description',
-                content: metaDescription,
-              },
-            ]
-              .concat(
-                keywords.length > 0
-                  ? {
-                      name: 'keywords',
-                      content: keywords.join(', '),
-                    }
-                  : []
-              )
-              .concat(meta)}
-          />
-        )
+    <Helmet
+      htmlAttributes={{
+        lang,
       }}
+      title={titleTag}
+      meta={[
+        {
+          name: 'description',
+          content: descriptionTag,
+        },
+        {
+          property: 'og:title',
+          content: titleTag,
+        },
+        {
+          property: 'og:description',
+          content: descriptionTag,
+        },
+        {
+          property: 'og:type',
+          content: 'website',
+        },
+        {
+          name: 'twitter:card',
+          content: 'summary',
+        },
+        {
+          name: 'twitter:creator',
+          content: authorTag,
+        },
+        {
+          name: 'twitter:title',
+          content: titleTag,
+        },
+        {
+          name: 'twitter:description',
+          content: descriptionTag,
+        },
+      ]
+        .concat(
+          keywordsTag.length > 0
+            ? {
+                name: 'keywords',
+                content: keywordsTag.join(', '),
+              }
+            : []
+        )}
     />
   )
 }
 
-Seo.defaultProps = {
-  lang: 'en',
-  meta: [],
-  keywords: [],
-}
-
-Seo.propTypes = {
-  description: PropTypes.string,
-  lang: PropTypes.string,
-  meta: PropTypes.array,
-  keywords: PropTypes.arrayOf(PropTypes.string),
-  title: PropTypes.string.isRequired,
-}
-
-export default Seo
-
-const detailsQuery = graphql`
-  query DefaultSeoQuery {
-    site {
-      siteMetadata {
-        title
-        description
-        author
+export const query = graphql`
+query SiteMetatdataQuery {
+  allPrismicSiteMetadata {
+    edges {
+      node {
+        data {
+          site_name {
+            text
+          }
+          site_description {
+            text
+          }
+          keywords {
+            text
+          }
+          author {
+            text
+          }
+        }
       }
     }
   }
+}
 `
+
+export default props => (
+  <StaticQuery
+    query={query}
+    render={siteMetadata => <Seo siteMetadata={siteMetadata} {...props} />}
+  />
+)
+

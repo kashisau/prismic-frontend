@@ -1,29 +1,39 @@
 @import url('../../fonts/fonts.css');
 
 html, body {
-  font-size: 16px;
+  font-size: 12px;
   margin: 0;
   padding: 0;
   height: 100vh;
+  background-color: #EAE9EF;
 }
 
-html {
-  background-color: #EAE9EF;
+@media screen and (min-width: 321px) {
+  html, body {
+    font-size: 14px;
+  }
+}
+@media screen and (min-width: 769px) {
+  html, body {
+    font-size: 16px;
+  }
 }
 
 body {
   min-height: 100vh;
   transition: background 500ms ease-in-out;
-  color: 000000;
+  color: #000000;
 
   font-family: 'Merriweather', sans-serif;
 
   display: grid;
-  grid-template-columns: 1;
-  grid-template-rows: 1;
+  grid-template-columns: 1fr;
+  grid-template-rows: max-content;
 
   font-size: 1.25em;
   line-height: 1.75;
+  padding: 0;
+  margin: 0;
 }
 
 body::before {
@@ -47,7 +57,7 @@ h1, h2, h3 {
 
 
 h1 {
-  font-size: 2.25em;
+  font-size: 2.4em;
   font-weight: 800;
   padding: 0 0 0.33em 0;
 }
