@@ -70,7 +70,7 @@ const Seo = ({ siteMetadata, title, description, author, keywords }) => {
   )
 }
 
-export const query = graphql`
+const query = graphql`
 query SiteMetatdataQuery {
   allPrismicSiteMetadata {
     edges {
