@@ -47,31 +47,33 @@ class PhotosPage extends React.Component {
 }
 
 export const query = graphql`
-  query SitePhotoListQuery {
-    allPrismicPhoto(sort: {fields: [first_publication_date], order: ASC}) {
-      edges {
-        node {
-          data {
-            title {
-              text
-            }
-            photo_description {
-              html
-            }
-            photo_file {
-              Prethumb {
-                url
-              }
+query SitePhotoListQuery {
+  allPrismicPhoto {
+    edges {
+      node {
+        id
+        slugs
+        data {
+          title {
+            text
+          }
+          photo_description {
+            html
+          }
+          photo_file {
+            Prethumb {
               url
             }
-            instagram {
-              url
-            }
+            url
+          }
+          instagram {
+            url
           }
         }
       }
     }
   }
+}
 `
 
 export default PhotosPage
