@@ -1,0 +1,83 @@
+html, body {
+  font-size: 12px;
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  background-color: #EAE9EF;
+}
+
+@media screen and (min-width: 321px) {
+  html, body {
+    font-size: 14px;
+  }
+}
+
+body {
+  min-height: 100vh;
+  transition: background 500ms ease-in-out;
+  color: #000000;
+
+  font-family: 'Merriweather', sans-serif;
+
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: max-content;
+
+  font-size: 1.25em;
+  line-height: 1.75;
+  padding: 0;
+  margin: 0;
+}
+
+h1, h2, h3 {
+  font-family: 'Exo', sans-serif;
+  line-height: 0.85;
+  letter-spacing: -0.03em;
+  padding: 0;
+  margin: 0;
+}
+
+h1 {
+  font-size: 3em;
+  font-weight: 800;
+  padding: 0 0 0.33em 0;
+}
+
+h2 {
+  font-family: 'Merriweather', sans-serif;
+  font-weight: normal;
+  font-size: 1.5em;
+  line-height: 1.25;
+  color: #0059BF;
+  padding: 0 0 0.5em 0;
+}
+
+a {
+  color: #0059BF;
+  text-decoration: none;
+  border-bottom: 0px solid rbga(0,0,0,0);
+  transition: border 800ms ease-in-out;
+}
+
+a:hover {
+  border-bottom: 1px solid #0059BF;
+}
+
+@media screen and (min-width: 768px) {
+  body {
+    align-items: stretch;
+  }
+
+  body div {
+    display: grid;
+    align-items: stretch;
+  }
+
+  h1 {
+    font-size: 3.1em;
+  }
+
+  h2 {
+    font-size: 1.25em;
+  }
+}
