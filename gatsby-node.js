@@ -25,74 +25,74 @@ exports.createPages = ({ graphql, actions }) => {
   return new Promise((resolve, reject) => {
     const photoPage = path.resolve(`src/pages/_photo.js`)
     // Query for markdown nodes to use in creating pages.
-    resolve(
-      graphql(`query SitePhotoListQuery {
-        allPrismicPhoto {
-          edges {
-            node {
-              id
-              slugs
-              data {
-                title {
-                  text
-                }
-                photo_description {
-                  html
-                }
-                photo_file {
-                  Prethumb {
-                    url
-                  }
+    graphql(`query SitePhotoListQuery {
+      allPrismicPhoto {
+        edges {
+          node {
+            id
+            slugs
+            data {
+              title {
+                text
+              }
+              photo_description {
+                html
+              }
+              photo_file {
+                Prethumb {
                   url
                 }
-                instagram {
-                  url
-                }
+                url
+              }
+              instagram {
+                url
               }
             }
           }
         }
-      }`).then(result => {
-        if (result.errors) {
-          reject(result.errors)
+      }
+    }`).then(result => {
+      if (result.errors) {
+        reject(result.errors)
+      }
+      const photoNodes = result.data.allPrismicPhoto.edges;
+
+      // Create pages for each markdown file.
+      photoNodes.forEach(({ node: photo }) => {
+        const { id, slugs, data } = photo;
+        const path = slugs[0]
+        const photoData = {
+          id,
+          slug: path,
+          title: data.title,
+          description: data.photo_description,
+          file: data.photo_file,
+          instagram: data.instagram
         }
-        const photoNodes = result.data.allPrismicPhoto.edges;
 
-        // Create pages for each markdown file.
-        photoNodes.forEach(({ node: photo }) => {
-          const { id, slugs, data } = photo;
-          const path = slugs[0]
-          const photoData = {
-            id,
-            slug: path,
-            title: data.title,
-            description: data.photo_description,
-            file: data.photo_file,
-            instagram: data.instagram
-          }
-
-          fetch(photoData.file.url, requestSettings)
-            .then(res => res.buffer())
-            .then((imagePartialArrayBuffer) => {
-              try {
-                const imagePartial = ExifParser.create(imagePartialArrayBuffer);
-                const imageExif = imagePartial.parse();
-                photoData.exif = imageExif
-                createPage({
-                  path,
-                  component: photoPage,
-                  // In your blog post template's graphql query, you can use path
-                  // as a GraphQL variable to query for data from the markdown file.
-                  context: {
-                    ...photoData
-                  },
-                })
-              } catch (error) {
-                reject(error);
-              }
-            });
-        })
+        resolve(fetch(photoData.file.url, requestSettings)
+          .then(res => res.buffer())
+          .then((imagePartialArrayBuffer) => {
+            try {
+              const imagePartial = ExifParser.create(imagePartialArrayBuffer);
+              const imageExif = imagePartial.parse();
+              photoData.exif = imageExif;
+              createPage({
+                path,
+                component: photoPage,
+                // In your blog post template's graphql query, you can use path
+                // as a GraphQL variable to query for data from the markdown file.
+                context: {
+                  ...photoData
+                },
+              })
+              resolve();
+            } catch (error) {
+              reject(error);
+            }
+          })
+        )
       })
-    )
+    })
   })
 }
