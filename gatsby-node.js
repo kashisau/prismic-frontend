@@ -10,9 +10,8 @@ const path = require('path')
 // data layer is bootstrapped to let plugins create pages from data.
 exports.createPages = ({ graphql, actions }) => {
   const { createPage } = actions
-  console.log("Creating pages!");
   return new Promise((resolve, reject) => {
-    const photoFrame = path.resolve(`src/components/PhotoFrame/PhotoFrame.js`)
+    const photoPage = path.resolve(`src/pages/_photo.js`)
     // Query for markdown nodes to use in creating pages.
     resolve(
       graphql(`query SitePhotoListQuery {
@@ -22,7 +21,6 @@ exports.createPages = ({ graphql, actions }) => {
               id
               slugs
               data {
-                
                 title {
                   text
                 }
@@ -50,7 +48,6 @@ exports.createPages = ({ graphql, actions }) => {
 
         // Create pages for each markdown file.
         photoNodes.forEach(({ node: photo }) => {
-          console.log("photo: ", photo);
           const { id, slugs, data } = photo;
           const path = slugs[0]
           const photoData = {
@@ -63,11 +60,10 @@ exports.createPages = ({ graphql, actions }) => {
           }
           createPage({
             path,
-            component: photoFrame,
+            component: photoPage,
             // In your blog post template's graphql query, you can use path
             // as a GraphQL variable to query for data from the markdown file.
             context: {
-              path,
               ...photoData
             },
           })
