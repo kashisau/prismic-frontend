@@ -1,4 +1,6 @@
 const path = require('path')
+const fetch = require('node-fetch')
+const ExifParser = require('exif-parser')
 
 /**
  * Implement Gatsby's Node APIs in this file.
@@ -11,6 +13,15 @@ const path = require('path')
 // data layer is bootstrapped to let plugins create pages from data.
 exports.createPages = ({ graphql, actions }) => {
   const { createPage } = actions
+  const requestSettings = {
+    redirect: "follow",
+    cache: "no-cache",
+    headers: {
+      "Content-Type": "image/jpeg",
+      "Range": "bytes=0-65536"
+    }
+  }
+
   return new Promise((resolve, reject) => {
     const photoPage = path.resolve(`src/pages/_photo.js`)
     // Query for markdown nodes to use in creating pages.
@@ -59,15 +70,27 @@ exports.createPages = ({ graphql, actions }) => {
             file: data.photo_file,
             instagram: data.instagram
           }
-          createPage({
-            path,
-            component: photoPage,
-            // In your blog post template's graphql query, you can use path
-            // as a GraphQL variable to query for data from the markdown file.
-            context: {
-              ...photoData
-            },
-          })
+
+          fetch(photoData.file.url, requestSettings)
+            .then(res => res.buffer())
+            .then((imagePartialArrayBuffer) => {
+              try {
+                const imagePartial = ExifParser.create(imagePartialArrayBuffer);
+                const imageExif = imagePartial.parse();
+                photoData.exif = imageExif
+                createPage({
+                  path,
+                  component: photoPage,
+                  // In your blog post template's graphql query, you can use path
+                  // as a GraphQL variable to query for data from the markdown file.
+                  context: {
+                    ...photoData
+                  },
+                })
+              } catch (error) {
+                reject(error);
+              }
+            });
         })
       })
     )
