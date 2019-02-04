@@ -22,7 +22,10 @@ async function fetchImageHeaderFromUrl(jpegUrl) {
     }
   }
   return fetch(jpegUrl, requestSettings)
-    .then(res => res.buffer() || res.arrayBuffer());
+    .then(res => {
+      const buffer = ('buffer' in res)? res.buffer() : res.arrayBuffer();
+      return buffer;
+    });
 }
 
 async function getRawExif(imagePartialArrayBuffer) {
