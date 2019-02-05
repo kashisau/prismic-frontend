@@ -14,7 +14,7 @@ const PhotoPage = (pageData) => {
   return (<PhotoLayout>
     <Seo title={photoTitle} />
     <article>
-      <img src={url} alt={photoTitle} className="Photo--full" />
+      <img src={url} alt={photoTitle} className={`Photo--full Photo--${photo.aspectRatio.split(':').join('x')}`} />
       <header>
         <h1>{photoTitle}</h1>
         <ul>

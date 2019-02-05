@@ -1,7 +1,7 @@
 const path = require('path')
 const fetch = require('node-fetch')
 const ExifParser = require('exif-parser')
-
+const AspectRatio = require('./src/services/AspectRatio/AspectRatio')
 /**
  * Implement Gatsby's Node APIs in this file.
  *
@@ -74,9 +74,14 @@ exports.createPages = ({ graphql, actions }) => {
           .then(res => res.buffer())
           .then((imagePartialArrayBuffer) => {
             try {
-              const imagePartial = ExifParser.create(imagePartialArrayBuffer);
-              const imageExif = imagePartial.parse();
-              photoData.exif = imageExif;
+              const imagePartial = ExifParser.create(imagePartialArrayBuffer)
+              const imageExif = imagePartial.parse()
+              photoData.exif = imageExif
+
+              const imageSize = imageExif.imageSize
+              const aspectRatio = AspectRatio.getAspectRatio(imageSize)
+              photoData.aspectRatio = aspectRatio
+
               createPage({
                 path,
                 component: photoPage,
