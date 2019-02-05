@@ -8,6 +8,8 @@ const PhotoPage = (pageData) => {
   const url = photo.file.url
   const exif = photo.exif
   const photoDate = new Date(exif.tags.DateTimeOriginal*1000)
+  const exposureTime = exif.tags.ExposureTime
+  const exposureString = (exposureTime >= 1)? `${exposureTime}s` : `1/${1/exposureTime}s`
 
   return (<PhotoLayout>
     <Seo title={photoTitle} />
@@ -18,7 +20,7 @@ const PhotoPage = (pageData) => {
         <ul>
           <li>Focal length: {exif.tags.FocalLength}mm</li>
           <li>Apeture: f/{exif.tags.FNumber}mm</li>
-          <li>Shutter speed: 1/{1/exif.tags.ExposureTime}</li>
+          <li>Shutter speed: {exposureString}</li>
           <li>Taken: <time dateTime={photoDate.toUTCString()}>{photoDate.toLocaleDateString()}</time></li>
         </ul>
         {exif.tags.Model}
