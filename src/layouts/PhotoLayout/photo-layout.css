@@ -25,28 +25,6 @@ body::before {
   font-size: 0.8em;
 }
 
-.Photo--full {
-  background-color: rgba(0,0,0,0.25);
-  width: 100vw;
-  margin: 0 -1em;
-}
-
-.Photo--3x2 {
-  height: 62.5vw;
-}
-
-.Photo--2x3 {
-  height: 177.78vw;
-}
-
-.Photo--4x3 {
-  height: 75vw;
-}
-
-.Photo--3x4 {
-  height: 133.33vw;
-}
-
 h1 {
   font-size: 1.5rem;
 }
