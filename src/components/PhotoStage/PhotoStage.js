@@ -5,15 +5,15 @@ import classNames from 'classnames/bind';
 const PhotoStage = (photoData) => {
   const { photo } = photoData
   const photoTitle = photo.title.text
-  const url = photo.file.url
+  const responsiveImages = photo.file
   const exif = photo.exif
   const photoDate = new Date(exif.tags.DateTimeOriginal*1000)
   const exposureTime = exif.tags.ExposureTime
-  const exposureString = (exposureTime >= 1)? `${exposureTime}s` : `1/${1/exposureTime}s`
+  const exposureString = (exposureTime >= 1)? `${exposureTime}s` : `1/${parseInt(1/exposureTime)}s`
   const lens = exif.tags.LensModel
 
   return (<article>
-      <img src={url} alt={photoTitle} className={classNames(styles.fullPhoto, styles[`ratio${photo.aspectRatio.split(':').join('x')}`])} />
+      <img src={responsiveImages.Tablet.url} alt={photoTitle} className={classNames(styles.fullPhoto, styles[`ratio${photo.aspectRatio.split(':').join('x')}`])} />
       <header>
         <h1>{photoTitle}</h1>
         <ul className={styles.data}>

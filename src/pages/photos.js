@@ -18,6 +18,7 @@ class PhotosPage extends React.Component {
     this.state.photos = props.data.allPrismicPhoto.edges.reduce((photos, edge) => {
       const photoData = edge.node.data;
       const url = photoData.photo_file.url
+      const responsiveImages = photoData.photo_file
       const slug = edge.node.slugs[0];
       const exifResolved = getExifFromUrl(url);
 
@@ -25,6 +26,7 @@ class PhotosPage extends React.Component {
         title: photoData.title,
         description: photoData.photo_description,
         url: url,
+        responsiveImages: responsiveImages,
         slug: slug,
         exif: exifResolved,
         prethumb: photoData.photo_file.Prethumb.url
@@ -65,6 +67,18 @@ query SitePhotoListQuery {
           }
           photo_file {
             Prethumb {
+              url
+            }
+            Desktop {
+              url
+            }
+            Phone {
+              url
+            }
+            Thumb {
+              url
+            }
+            Tablet {
               url
             }
             url

@@ -42,6 +42,18 @@ exports.createPages = ({ graphql, actions }) => {
                 Prethumb {
                   url
                 }
+                Desktop {
+                  url
+                }
+                Phone {
+                  url
+                }
+                Thumb {
+                  url
+                }
+                Tablet {
+                  url
+                }
                 url
               }
               instagram {
