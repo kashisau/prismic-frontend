@@ -9,9 +9,9 @@ const IndexPage = ({data}) => {
   const { title, subtitle, body } = homepageData;
 
   return (<FrontpageLayout>
+    <Seo title={title.text} />
     <Header siteTitle={title.text} subtitle={subtitle.text} />
     <section className="MainBody" dangerouslySetInnerHTML={{ __html: body.html}} />
-    <Seo title={title.text} />
   </FrontpageLayout>)
 }
 
