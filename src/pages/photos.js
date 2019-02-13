@@ -2,7 +2,6 @@ import React from 'react'
 import { graphql } from 'gatsby'
 import Header from '../components/Header'
 import Seo from '../components/Seo'
-import PhotoThumb from '../components/PhotoThumb'
 import PhotosIndexLayout from '../layouts/PhotosIndexLayout'
 import PhotoExif from '../services/PhotoExif'
 
@@ -29,6 +28,7 @@ class PhotosPage extends React.Component {
         responsiveImages: responsiveImages,
         slug: slug,
         exif: exifResolved,
+        thumb: photoData.photo_file.Thumb.url,
         prethumb: photoData.photo_file.Prethumb.url
       };
 
@@ -39,14 +39,10 @@ class PhotosPage extends React.Component {
 
   render() {
     const { photos } = this.state
-    const photoThumbs = photos.map((photo, i) => <PhotoThumb key={i} {...photo} />);
 
-    return (<PhotosIndexLayout>
+    return (<PhotosIndexLayout photos={photos}>
       <Seo title="Photos" description="A collection of photos by Kashi Samaraweera" />
       <Header siteTitle="Photos" subtitle="shutterbug" />
-      <section className="MainBody">
-        {photoThumbs}
-      </section>
     </PhotosIndexLayout>)
   }
 }

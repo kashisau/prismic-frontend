@@ -1,0 +1,19 @@
+.photoListItem {
+  margin: 0.5em;
+  padding: 0;
+  background-color: white;
+}
+
+.link {
+  padding: 0.5em 0.5em 1em 0.5em;
+  display: block;
+}
+
+.thumb {
+  width: 100%;
+  box-shadow: 1px 1px 10px rgba(24,24,24,0.4);
+}
+
+.title {
+  font-size: 0.75em;
+}
