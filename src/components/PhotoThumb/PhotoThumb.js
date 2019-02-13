@@ -1,9 +1,8 @@
 import React from 'react'
-import { Link } from 'gatsby'
 
-const PhotoThumb = ({prethumb, title, slug}) => {
+const PhotoThumb = ({prethumb, title, className}) => {
   return (
-    <Link to={`/${slug}`}><img src={prethumb} alt={title} /></Link>
+    <img className={className} src={prethumb} alt={title.text} />
   )
 }
 
