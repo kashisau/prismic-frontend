@@ -2,6 +2,11 @@
 .fullPhoto {
   background-color: rgba(0,0,0,0.25);
   width: 100vw;
+  margin: 0 ;
+}
+
+.boundary {
+  overflow: hidden;
   margin: 0 -1em;
 }
 

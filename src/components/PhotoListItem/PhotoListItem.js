@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'gatsby'
-import PhotoThumb from '../PhotoThumb'
 import styles from './photo-list-item.module.css'
+import Photo from '../Photo/Photo';
 
 const PhotoListItem = (photo) => {
   const { title, slug } = photo
@@ -9,7 +9,7 @@ const PhotoListItem = (photo) => {
     <li className={styles.photoListItem}>
       <article>
         <Link to={`/${slug}`} className={styles.link}>
-          <PhotoThumb className={styles.thumb} {...photo} />
+          <Photo photo={photo} />
           <h2 className={styles.title}>{title.text}</h2>
         </Link>
       </article>
