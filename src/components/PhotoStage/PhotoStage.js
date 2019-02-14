@@ -1,9 +1,13 @@
 import React from 'react'
 import styles from './photo-stage.module.css'
-import classNames from 'classnames/bind';
+import classNames from 'classnames/bind'
+import { LazyLoadImage } from 'react-lazy-load-image-component'
+import 'react-lazy-load-image-component/src/effects/blur.css'
+
 
 const PhotoStage = (photoData) => {
   const { photo } = photoData
+  const prethumb = photo.prethumb
   const photoTitle = photo.title.text
   const responsiveImages = photo.file
   const exif = photo.exif
@@ -12,8 +16,16 @@ const PhotoStage = (photoData) => {
   const exposureString = (exposureTime >= 1)? `${exposureTime}s` : `1/${parseInt(1/exposureTime)}s`
   const lens = exif.tags.LensModel
 
+  const classnames = classNames(styles.fullPhoto, styles[`ratio${photo.aspectRatio.split(':').join('x')}`])
   return (<article>
-      <img src={responsiveImages.Tablet.url} alt={photoTitle} className={classNames(styles.fullPhoto, styles[`ratio${photo.aspectRatio.split(':').join('x')}`])} />
+      <div className={classNames(styles.boundary)}>
+        <LazyLoadImage
+        className={classnames}
+        placeholderSrc={prethumb}
+        effect="blur"
+        alt={photoTitle}
+        src={responsiveImages.Desktop.url} />
+      </div>
       <header>
         <h1>{photoTitle}</h1>
         <ul className={styles.data}>
