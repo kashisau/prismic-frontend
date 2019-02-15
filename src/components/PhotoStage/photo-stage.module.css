@@ -1,40 +1,34 @@
-
-.fullPhoto {
-  background-color: rgba(0,0,0,0.25);
-  width: 100vw;
-  margin: 0 ;
-}
-
-.boundary {
-  overflow: hidden;
-  margin: 0 -1em;
-}
-
-.ratio3x2 {
-  height: 62.5vw;
-}
-
-.ratio2x3 {
-  height: 177.78vw;
-}
-
-.ratio4x3 {
-  height: 75vw;
-}
-
-.ratio3x4 {
-  height: 133.33vw;
-}
-
 .data {
   list-style-type: none;
   padding: 0;
   margin: 0;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  grid-template-rows: repeat(3, 1fr);
+  grid-template-rows: 5em repeat(2, 1fr);
+
+  font-size: 0.5em;
+}
+
+.h1 {
+  padding: 0.5em 0 0 0;
+  font-size: 1.25em;
+}
+
+.data li:not(.photoDate) {
+  padding: 0.25em 0.5em;
+  font-size: 1.5em;
 }
 
 .photoDate {
   grid-column: 1 / 3;
+  text-transform: capitalize;
+  font-style: italic;
+  padding: 0.5em 0;
+  font-size: 1.5em;
+}
+
+.infoIcon {
+  width: 1.5em;
+  padding-right: 1em;
+  vertical-align: middle;
 }

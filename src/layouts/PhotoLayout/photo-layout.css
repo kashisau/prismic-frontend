@@ -22,11 +22,10 @@ body::before {
 
 .MainBody {
   align-self: start;
-  font-size: 0.8em;
 }
 
 h1 {
-  font-size: 1.5rem;
+  font-size: 1.75rem;
 }
 
 @media screen and (min-width: 769px) {
