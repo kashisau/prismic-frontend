@@ -17,19 +17,16 @@ class PhotosPage extends React.Component {
     this.state.photos = props.data.allPrismicPhoto.edges.reduce((photos, edge) => {
       const photoData = edge.node.data;
       const url = photoData.photo_file.url
-      const responsiveImages = photoData.photo_file
       const slug = edge.node.slugs[0];
       const exifResolved = getExifFromUrl(url);
 
       const photo = {
         title: photoData.title,
         description: photoData.photo_description,
+        gatsbyImage: photoData.photo_file,
         url: url,
-        responsiveImages: responsiveImages,
         slug: slug,
         exif: exifResolved,
-        thumb: photoData.photo_file.Thumb.url,
-        prethumb: photoData.photo_file.Prethumb.url
       };
 
       photos.push(photo);
@@ -48,45 +45,48 @@ class PhotosPage extends React.Component {
 }
 
 export const query = graphql`
-query SitePhotoListQuery {
-  allPrismicPhoto {
-    edges {
-      node {
-        id
-        slugs
-        data {
-          title {
-            text
-          }
-          photo_description {
-            html
-          }
-          photo_file {
-            Prethumb {
+  fragment childImageSharpFluid on ImageSharpFluid {
+    base64
+    tracedSVG
+    aspectRatio
+    src
+    srcSet
+    srcWebp
+    srcSetWebp
+    sizes
+  }
+
+  query SitePhotoListQuery {
+    allPrismicPhoto {
+      edges {
+        node {
+          id
+          slugs
+          data {
+            title {
+              text
+            }
+            photo_description {
+              html
+            }
+            photo_file {
+              localFile {
+                childImageSharp {
+                  fluid(maxWidth: 2560) {
+                    ...childImageSharpFluid
+                  }
+                }
+              }
               url
             }
-            Desktop {
+            instagram {
               url
             }
-            Phone {
-              url
-            }
-            Thumb {
-              url
-            }
-            Tablet {
-              url
-            }
-            url
-          }
-          instagram {
-            url
           }
         }
       }
     }
   }
-}
 `
 
 export default PhotosPage

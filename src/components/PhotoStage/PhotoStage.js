@@ -15,8 +15,8 @@ const PhotoStage = (photoData) => {
   const exposureTime = exif.tags.ExposureTime
   const exposureString = (exposureTime >= 1)? `${exposureTime}s` : `1/${parseInt(1/exposureTime)}s`
   const lens = exif.tags.LensModel
-
   const classnames = classNames(styles.fullPhoto, styles[`ratio${photo.aspectRatio.split(':').join('x')}`])
+
   return (<article>
       <div className={classNames(styles.boundary)}>
         <LazyLoadImage
