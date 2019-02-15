@@ -2,30 +2,27 @@ const path = require('path')
 const fetch = require('node-fetch')
 const ExifParser = require('exif-parser')
 const AspectRatio = require('./src/services/AspectRatio/AspectRatio')
+const { createRemoteFileNode } = require(`gatsby-source-filesystem`)
 /**
  * Implement Gatsby's Node APIs in this file.
  *
  * See: https://www.gatsbyjs.org/docs/node-apis/
  */
 
-// You can delete this file if you're not using it
-// Implement the Gatsby API “createPages”. This is called once the
-// data layer is bootstrapped to let plugins create pages from data.
-exports.createPages = ({ graphql, actions }) => {
-  const { createPage } = actions
-  const requestSettings = {
-    redirect: "follow",
-    cache: "no-cache",
-    headers: {
-      "Content-Type": "image/jpeg",
-      "Range": "bytes=0-65536"
-    }
+const photoHeaderRequestSettings = {
+  redirect: "follow",
+  cache: "no-cache",
+  headers: {
+    "Content-Type": "image/jpeg",
+    "Range": "bytes=0-65536"
   }
+}
 
-  return new Promise((resolve, reject) => {
-    const photoPage = path.resolve(`src/pages/_photo.js`)
-    // Query for markdown nodes to use in creating pages.
-    graphql(`query SitePhotoListQuery {
+exports.createPages = async ({ graphql, actions, createNodeId, store, cache }) => {
+  const { createPage, createNode } = actions
+  const photoPage = path.resolve(`src/pages/_photo.js`)
+  const photoQuery = await graphql(
+      `query SitePhotoListQuery {
       allPrismicPhoto {
         edges {
           node {
@@ -63,53 +60,53 @@ exports.createPages = ({ graphql, actions }) => {
           }
         }
       }
-    }`).then(result => {
-      if (result.errors) {
-        reject(result.errors)
-      }
-      const photoNodes = result.data.allPrismicPhoto.edges;
+    }`)
 
-      // Create pages for each markdown file.
-      photoNodes.forEach(({ node: photo }) => {
-        const { id, slugs, data } = photo;
-        const path = slugs[0]
-        const photoData = {
-          id,
-          slug: path,
-          title: data.title,
-          description: data.photo_description,
-          file: data.photo_file,
-          instagram: data.instagram
-        }
+  const photoNodes = photoQuery.data.allPrismicPhoto.edges;
+  const photoPages = []
 
-        resolve(fetch(photoData.file.url, requestSettings)
-          .then(res => res.buffer())
-          .then((imagePartialArrayBuffer) => {
-            try {
-              const imagePartial = ExifParser.create(imagePartialArrayBuffer)
-              const imageExif = imagePartial.parse()
-              photoData.exif = imageExif
+  const resolvePhoto = async ({ node }) => {
+    const { id, slugs, data } = node;
+    const url = data.photo_file.url
+    const path = slugs[0]
 
-              const imageSize = imageExif.imageSize
-              const aspectRatio = AspectRatio.getAspectRatio(imageSize)
-              photoData.aspectRatio = aspectRatio
+    const photoHeader = await fetch(url, photoHeaderRequestSettings)
+    const photoBuffer = await photoHeader.buffer()
+    const imagePartial = ExifParser.create(photoBuffer)
+    const imageExif = imagePartial.parse()
+    const imageSize = imageExif.imageSize
+    const aspectRatio = AspectRatio.getAspectRatio(imageSize)
 
-              createPage({
-                path,
-                component: photoPage,
-                // In your blog post template's graphql query, you can use path
-                // as a GraphQL variable to query for data from the markdown file.
-                context: {
-                  ...photoData
-                },
-              })
-              resolve();
-            } catch (error) {
-              reject(error);
-            }
-          })
-        )
-      })
+    const remoteFileNode = await createRemoteFileNode({
+      // The source url of the remote file
+      url,
+      store,
+      cache,
+      createNode,
+      createNodeId,
     })
-  })
+
+    const photoData = {
+      id,
+      slug: path,
+      exif: imageExif,
+      title: data.title,
+      aspectRatio,
+      description: data.photo_description,
+      file: data.photo_file,
+      photoNodeId: remoteFileNode.id,
+      instagram: data.instagram
+    }
+
+    createPage({
+      path,
+      component: photoPage,
+      context: {
+        ...photoData
+      },
+    })
+  }
+
+  photoNodes.forEach(photo => photoPages.push(resolvePhoto(photo)))
+  return Promise.all(photoPages)
 }
