@@ -22,45 +22,47 @@ exports.createPages = async ({ graphql, actions, createNodeId, store, cache }) =
   const { createPage, createNode } = actions
   const photoPage = path.resolve(`src/pages/_photo.js`)
   const photoQuery = await graphql(
-      `query SitePhotoListQuery {
-      allPrismicPhoto {
-        edges {
-          node {
-            id
-            slugs
-            data {
-              title {
-                text
-              }
-              photo_description {
-                html
-              }
-              photo_file {
-                Prethumb {
+      `fragment childImageSharpFluid on ImageSharpFluid {
+        base64
+        aspectRatio
+        src
+        srcSet
+        srcWebp
+        srcSetWebp
+        sizes
+      }
+
+      query SitePhotoListQuery {
+        allPrismicPhoto {
+          edges {
+            node {
+              id
+              slugs
+              data {
+                title {
+                  text
+                }
+                photo_description {
+                  html
+                }
+                photo_file {
+                  localFile {
+                    childImageSharp {
+                      fluid(maxWidth: 2560) {
+                        ...childImageSharpFluid
+                      }
+                    }
+                  }
                   url
                 }
-                Desktop {
+                instagram {
                   url
                 }
-                Phone {
-                  url
-                }
-                Thumb {
-                  url
-                }
-                Tablet {
-                  url
-                }
-                url
-              }
-              instagram {
-                url
               }
             }
           }
         }
-      }
-    }`)
+      }`)
 
   const photoNodes = photoQuery.data.allPrismicPhoto.edges;
   const photoPages = []

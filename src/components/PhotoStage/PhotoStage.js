@@ -1,15 +1,11 @@
 import React from 'react'
 import styles from './photo-stage.module.css'
 import classNames from 'classnames/bind'
-import { LazyLoadImage } from 'react-lazy-load-image-component'
-import 'react-lazy-load-image-component/src/effects/blur.css'
-
+import Img from 'gatsby-image'
 
 const PhotoStage = (photoData) => {
   const { photo } = photoData
-  const prethumb = photo.prethumb
   const photoTitle = photo.title.text
-  const responsiveImages = photo.file
   const exif = photo.exif
   const photoDate = new Date(exif.tags.DateTimeOriginal*1000)
   const exposureTime = exif.tags.ExposureTime
@@ -19,12 +15,10 @@ const PhotoStage = (photoData) => {
 
   return (<article>
       <div className={classNames(styles.boundary)}>
-        <LazyLoadImage
-        className={classnames}
-        placeholderSrc={prethumb}
-        effect="blur"
-        alt={photoTitle}
-        src={responsiveImages.Desktop.url} />
+        <Img
+          className={classnames}
+          fluid={photo.file.localFile.childImageSharp.fluid}
+          alt={photoTitle} />
       </div>
       <header>
         <h1>{photoTitle}</h1>

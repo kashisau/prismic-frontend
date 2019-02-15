@@ -47,7 +47,6 @@ class PhotosPage extends React.Component {
 export const query = graphql`
   fragment childImageSharpFluid on ImageSharpFluid {
     base64
-    tracedSVG
     aspectRatio
     src
     srcSet

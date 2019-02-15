@@ -2,7 +2,6 @@ import React from 'react'
 import styles from './photo.module.css'
 import classNames from 'classnames/bind';
 import Img from 'gatsby-image'
-import 'react-lazy-load-image-component/src/effects/blur.css'
 
 class Photo extends React.Component {
   state = {
