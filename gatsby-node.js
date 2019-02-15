@@ -13,6 +13,7 @@ const AspectRatio = require('./src/services/AspectRatio/AspectRatio')
 // data layer is bootstrapped to let plugins create pages from data.
 exports.createPages = ({ graphql, actions }) => {
   const { createPage } = actions
+  const photoPage = path.resolve(`src/pages/_photo.js`)
   const requestSettings = {
     redirect: "follow",
     cache: "no-cache",
@@ -22,10 +23,9 @@ exports.createPages = ({ graphql, actions }) => {
     }
   }
 
-  return new Promise((resolve, reject) => {
-    const photoPage = path.resolve(`src/pages/_photo.js`)
-    // Query for markdown nodes to use in creating pages.
-    graphql(`query SitePhotoListQuery {
+  return photoQuery = 
+    graphql(
+      `query SitePhotoListQuery {
       allPrismicPhoto {
         edges {
           node {
@@ -63,15 +63,14 @@ exports.createPages = ({ graphql, actions }) => {
           }
         }
       }
-    }`).then(result => {
-      if (result.errors) {
-        reject(result.errors)
-      }
-      const photoNodes = result.data.allPrismicPhoto.edges;
+    }`
+    )
+    .then(photoQuery => {
+      const photoNodes = photoQuery.data.allPrismicPhoto.edges;
+      const photoPages = []
 
-      // Create pages for each markdown file.
-      photoNodes.forEach(({ node: photo }) => {
-        const { id, slugs, data } = photo;
+      const resolvePhoto = async ({ node }) => {
+        const { id, slugs, data } = node;
         const path = slugs[0]
         const photoData = {
           id,
@@ -82,34 +81,29 @@ exports.createPages = ({ graphql, actions }) => {
           instagram: data.instagram
         }
 
-        resolve(fetch(photoData.file.url, requestSettings)
-          .then(res => res.buffer())
-          .then((imagePartialArrayBuffer) => {
-            try {
-              const imagePartial = ExifParser.create(imagePartialArrayBuffer)
-              const imageExif = imagePartial.parse()
-              photoData.exif = imageExif
+        const photoHeader = await fetch(photoData.file.url, requestSettings)
+        const photoBuffer = await photoHeader.buffer()
+        const imagePartial = ExifParser.create(photoBuffer)
+        const imageExif = imagePartial.parse()
 
-              const imageSize = imageExif.imageSize
-              const aspectRatio = AspectRatio.getAspectRatio(imageSize)
-              photoData.aspectRatio = aspectRatio
+        photoData.exif = imageExif
 
-              createPage({
-                path,
-                component: photoPage,
-                // In your blog post template's graphql query, you can use path
-                // as a GraphQL variable to query for data from the markdown file.
-                context: {
-                  ...photoData
-                },
-              })
-              resolve();
-            } catch (error) {
-              reject(error);
-            }
-          })
-        )
-      })
+        const imageSize = imageExif.imageSize
+        const aspectRatio = AspectRatio.getAspectRatio(imageSize)
+        photoData.aspectRatio = aspectRatio
+
+        createPage({
+          path,
+          component: photoPage,
+          // In your blog post template's graphql query, you can use path
+          // as a GraphQL variable to query for data from the markdown file.
+          context: {
+            ...photoData
+          },
+        })
+      }
+
+      photoNodes.forEach(photo => photoPages.push(resolvePhoto(photo)))
+      return Promise.all(photoPages)
     })
-  })
-}
+  }
