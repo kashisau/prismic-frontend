@@ -17,12 +17,11 @@ const PhotoStage = (photoData) => {
   const exposureString = (exposureTime >= 1)? `${exposureTime}s` : `1/${parseInt(1/exposureTime)}s`
 
   return (<article>
-      <div className={classNames(styles.boundary)}>
+      <header>
         <Img
+          className={styles.imageWrapper}
           fluid={photo.file.localFile.childImageSharp.fluid}
           alt={photoTitle} />
-      </div>
-      <header>
         <h1 className={styles.h1}>{photoTitle}</h1>
         <ul className={styles.data}>
           <li className={styles.photoDate}><time dateTime={photoDate.toISOString()}>{ago(photoDate)}</time></li>
@@ -32,7 +31,7 @@ const PhotoStage = (photoData) => {
           <li className={styles.shutterSeed}><img className={styles.infoIcon} src={iconShutterSpeed} alt="Shutter speed" />{exposureString}</li>
         </ul>
       </header>
-      <p dangerouslySetInnerHTML={{__html: photo.description.html}} />
+      <div className={styles.description} dangerouslySetInnerHTML={{__html: photo.description.html}} />
     </article>)
 }
 

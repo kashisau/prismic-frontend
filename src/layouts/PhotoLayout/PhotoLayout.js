@@ -6,9 +6,9 @@ class PhotoLayout extends React.Component {
     const { children } = this.props
 
     return (
-      <article className="PageMain">
+      <section className="PageMain">
       {children}
-      </article>
+      </section>
     );
   }
 }

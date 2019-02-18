@@ -9,6 +9,14 @@
   font-size: 0.5em;
 }
 
+.description {
+  font-size: 0.8125em;
+}
+
+.imageWrapper {
+  max-width: 100%;
+}
+
 .h1 {
   padding: 0.5em 0 0 0;
   font-size: 1.25em;
