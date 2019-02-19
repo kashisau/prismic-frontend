@@ -1,6 +1,5 @@
 import React from 'react'
 import styles from './photo-stage.module.css'
-import classNames from 'classnames/bind'
 import Img from 'gatsby-image'
 import { ago } from 'time-ago'
 import iconCamera from '../../images/icon-camera.svg'

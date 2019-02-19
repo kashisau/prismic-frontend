@@ -1,7 +1,8 @@
 import React from 'react'
 import { Link } from 'gatsby'
-import styles from './photo-list-item.module.css'
 import Photo from '../Photo/Photo';
+
+import styles from './photo-list-item.module.css'
 
 const PhotoListItem = (photo) => {
   const { title, slug } = photo

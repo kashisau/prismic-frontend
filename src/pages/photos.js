@@ -1,47 +1,37 @@
 import React from 'react'
 import { graphql } from 'gatsby'
-import Header from '../components/Header'
 import Seo from '../components/Seo'
 import PhotosIndexLayout from '../layouts/PhotosIndexLayout'
-import PhotoExif from '../services/PhotoExif'
+import AspectRatio from '../services/AspectRatio'
 
-const { getExifFromUrl } = PhotoExif;
+const PhotosPage = ({data}) => {
+  const photos = data.allPrismicPhoto.edges.reduce((photos, edge) => {
+    const photoData = edge.node.data;
+    const url = photoData.photo_file.url
+    const slug = edge.node.slugs[0];
+    const imageExif = photoData.photo_file.localFile.fields.exif
+    const imageSize = { width: imageExif.exif.PixelXDimension, height: imageExif.exif.PixelYDimension }
+    const aspectRatio = AspectRatio.getAspectRatio(imageSize)
 
-class PhotosPage extends React.Component {
-  state = {
-    photos: []
-  }
+    const photo = {
+      title: photoData.title,
+      description: photoData.photo_description,
+      aspectRatio,
+      file: photoData.photo_file,
+      url: url,
+      slug: slug,
+      exif: imageExif
+    };
 
-  constructor(props) {
-    super(props);
-    this.state.photos = props.data.allPrismicPhoto.edges.reduce((photos, edge) => {
-      const photoData = edge.node.data;
-      const url = photoData.photo_file.url
-      const slug = edge.node.slugs[0];
-      const exifResolved = getExifFromUrl(url);
+    photos.push(photo);
+    return photos;
+  }, []);
 
-      const photo = {
-        title: photoData.title,
-        description: photoData.photo_description,
-        gatsbyImage: photoData.photo_file,
-        url: url,
-        slug: slug,
-        exif: exifResolved,
-      };
-
-      photos.push(photo);
-      return photos;
-    }, []);
-  }
-
-  render() {
-    const { photos } = this.state
-
-    return (<PhotosIndexLayout photos={photos}>
+  return (
+    <PhotosIndexLayout photos={photos}>
       <Seo title="Photos" description="A collection of photos by Kashi Samaraweera" />
-      <Header siteTitle="Photos" subtitle="shutterbug" />
-    </PhotosIndexLayout>)
-  }
+    </PhotosIndexLayout>
+  )
 }
 
 export const query = graphql`
