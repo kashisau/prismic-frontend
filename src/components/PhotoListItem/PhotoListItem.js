@@ -10,8 +10,9 @@ const PhotoListItem = (photo) => {
     <li className={styles.photoListItem}>
       <article>
         <Link to={`/${slug}`} className={styles.link}>
-          <Photo photo={photo} />
+          <Photo photo={photo}>
           <h2 className={styles.title}>{title.text}</h2>
+          </Photo>
         </Link>
       </article>
     </li>

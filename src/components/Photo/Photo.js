@@ -4,11 +4,12 @@ import Img from 'gatsby-image'
 
 import styles from './photo.module.css'
 
-const Photo = ({className, photo}) => {
+const Photo = ({className, photo, children}) => {
   const classnames = classNames(styles.photo, className)
-  return <div className={styles.boundary}>
+  return <>
+    {children}
     <Img className={classnames} fluid={photo.file.localFile.childImageSharp.fluid} />
-  </div>
+  </>
 }
 
 export default Photo
