@@ -1,23 +1,35 @@
 const path = require('path')
-const fetch = require('node-fetch')
-const ExifParser = require('exif-parser')
+const fs = require('fs')
 const AspectRatio = require('./src/services/AspectRatio/AspectRatio')
+const fastExif = require('fast-exif');
 const { createRemoteFileNode } = require(`gatsby-source-filesystem`)
+
+
 /**
  * Implement Gatsby's Node APIs in this file.
  *
  * See: https://www.gatsbyjs.org/docs/node-apis/
  */
+exports.onCreateNode = ({ node, actions }) => {
+  const { createNodeField } = actions;
 
-const photoHeaderRequestSettings = {
-  redirect: "follow",
-  cache: "no-cache",
-  headers: {
-    "Content-Type": "image/jpeg",
-    "Range": "bytes=0-65536"
+if(node.internal.type === 'File') {
+      const absolutePath = node.absolutePath;
+      fastExif.read(absolutePath)
+        .then((exifData) => {
+          createNodeField({
+            node,
+            name: 'exif',
+            value: exifData
+          });
+        })
+        .catch((err) => console.error(err));
   }
 }
 
+/**
+ * Generate individual photo pages.
+ */
 exports.createPages = async ({ graphql, actions, createNodeId, store, cache }) => {
   const { createPage, createNode } = actions
   const photoPage = path.resolve(`src/pages/_photo.js`)
@@ -30,6 +42,37 @@ exports.createPages = async ({ graphql, actions, createNodeId, store, cache }) =
         srcWebp
         srcSetWebp
         sizes
+      }
+
+      fragment exifData on File {
+        fields {
+          exif {
+            exif {
+              PixelXDimension
+              PixelYDimension
+              ExposureTime
+              FNumber
+              FocalLength
+              ISO
+              DateTimeOriginal
+              DateTimeDigitized
+            }
+            image {
+              Make
+              Model
+              Orientation
+            }
+            gps {
+              GPSLatitude
+              GPSLatitudeRef
+              GPSLongitude
+              GPSLongitudeRef
+              GPSAltitude
+              GPSTimeStamp
+              GPSDateStamp
+            }
+          }
+        }
       }
 
       query SitePhotoListQuery {
@@ -47,6 +90,7 @@ exports.createPages = async ({ graphql, actions, createNodeId, store, cache }) =
                 }
                 photo_file {
                   localFile {
+                    ...exifData
                     childImageSharp {
                       fluid(maxWidth: 2560) {
                         ...childImageSharpFluid
@@ -71,12 +115,8 @@ exports.createPages = async ({ graphql, actions, createNodeId, store, cache }) =
     const { id, slugs, data } = node;
     const url = data.photo_file.url
     const path = slugs[0]
-
-    const photoHeader = await fetch(url, photoHeaderRequestSettings)
-    const photoBuffer = await photoHeader.buffer()
-    const imagePartial = ExifParser.create(photoBuffer)
-    const imageExif = imagePartial.parse()
-    const imageSize = imageExif.imageSize
+    const imageExif = data.photo_file.localFile.fields.exif
+    const imageSize = { width: imageExif.exif.PixelXDimension, height: imageExif.exif.PixelYDimension }
     const aspectRatio = AspectRatio.getAspectRatio(imageSize)
 
     const remoteFileNode = await createRemoteFileNode({

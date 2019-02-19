@@ -55,6 +55,37 @@ export const query = graphql`
     sizes
   }
 
+  fragment exifData on File {
+    fields {
+      exif {
+        exif {
+          PixelXDimension
+          PixelYDimension
+          ExposureTime
+          FNumber
+          FocalLength
+          ISO
+          DateTimeOriginal
+          DateTimeDigitized
+        }
+        image {
+          Make
+          Model
+          Orientation
+        }
+        gps {
+          GPSLatitude
+          GPSLatitudeRef
+          GPSLongitude
+          GPSLongitudeRef
+          GPSAltitude
+          GPSTimeStamp
+          GPSDateStamp
+        }
+      }
+    }
+  }
+
   query SitePhotoListQuery {
     allPrismicPhoto {
       edges {
@@ -70,6 +101,7 @@ export const query = graphql`
             }
             photo_file {
               localFile {
+                ...exifData
                 childImageSharp {
                   fluid(maxWidth: 2560) {
                     ...childImageSharpFluid

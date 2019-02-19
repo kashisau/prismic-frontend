@@ -1,6 +1,6 @@
 import React from 'react'
 import PhotoListItem from '../../components/PhotoListItem'
-import styles from './photos-index-layout.css'
+import styles from './photos-index-layout.module.css'
 
 const PhotosIndexLayout = ({photos, children}) => {
   return (
