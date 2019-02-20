@@ -6,7 +6,7 @@ import styles from './photos-index-layout.module.css'
 
 const PhotosIndexLayout = ({photos, children}) => {
   return (
-    <section className="MainBody">
+    <section className="PhotosBody">
       <Header siteTitle="Photos" className={styles.Header} />
       <p className={styles.intro}>A selection of photos taken by Kashi Samaraweera</p>
       {children}

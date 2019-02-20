@@ -1,7 +1,7 @@
 import React from 'react'
 import { StaticQuery, graphql } from 'gatsby'
 
-import './frontpage-layout.css'
+import styles from './frontpage-layout.module.css'
 
 class FrontpageLayout extends React.Component {
   articleRef = React.createRef();
@@ -66,7 +66,7 @@ class FrontpageLayout extends React.Component {
           }
         `}
         render={data => (
-            <article className="PageMain" onMouseMove={this.shadow} ref={this.articleRef}>
+            <article className={styles.PageMain} onMouseMove={this.shadow} ref={this.articleRef}>
             {children}
             </article>
         )}
