@@ -1,6 +1,5 @@
 import React from 'react'
 import { graphql } from 'gatsby'
-import Header from '../components/Header'
 import FrontpageLayout from '../layouts/FrontpageLayout'
 import Seo from '../components/Seo'
 
@@ -8,11 +7,14 @@ const IndexPage = ({data}) => {
   const homepageData = data.allPrismicHomePage.edges[0].node.data;
   const { title, subtitle, body } = homepageData;
 
-  return (<FrontpageLayout>
-    <Seo title={title.text} />
-    <Header siteTitle={title.text} subtitle={subtitle.text} />
-    <section className="MainBody" dangerouslySetInnerHTML={{ __html: body.html}} />
-  </FrontpageLayout>)
+  return (
+    <FrontpageLayout
+      title={title.text}
+      subtitle={subtitle.text}
+      body={body.html}>
+      <Seo title={title.text} />
+    </FrontpageLayout>
+  )
 }
 
 export const query = graphql`

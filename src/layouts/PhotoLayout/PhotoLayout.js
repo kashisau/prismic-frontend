@@ -1,5 +1,6 @@
 import React from 'react'
-import './photo-layout.css'
+
+import './photo-layout.module.css'
 
 class PhotoLayout extends React.Component {
   render() {

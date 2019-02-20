@@ -1,9 +1,11 @@
 import React from 'react'
-import { StaticQuery, graphql } from 'gatsby'
+import Header from '../../components/Header'
 
-import './frontpage-layout.css'
+import './translate-fix.css'
+import styles from './frontpage-layout.module.css'
 
 class FrontpageLayout extends React.Component {
+
   articleRef = React.createRef();
 
   shadow = mouseEvent => {
@@ -53,25 +55,17 @@ class FrontpageLayout extends React.Component {
   }
 
   render() {
-    const { children } = this.props;
+    const { children, body, title, subtitle } = this.props;
     return (
-      <StaticQuery
-        query={graphql`
-          query SiteTitleQuery {
-            site {
-              siteMetadata {
-                title
-              }
-            }
-          }
-        `}
-        render={data => (
-            <article className="PageMain" onMouseMove={this.shadow} ref={this.articleRef}>
-            {children}
-            </article>
-        )}
-      />
-    );
+      <article
+        className={styles.PageMain}
+        onMouseMove={this.shadow}
+        ref={this.articleRef}>
+        <Header siteTitle={title} subtitle={subtitle} />
+        <section className={styles.mainBody} dangerouslySetInnerHTML={{ __html: body}} />
+        {children}
+      </article>
+    )
   }
 }
 

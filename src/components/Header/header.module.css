@@ -2,6 +2,10 @@
   align-self: end;
 }
 
+.title {
+  font-size: 3em;
+}
+
 .subtitle {
   font-style: italic;
 }
@@ -14,7 +18,7 @@
 
 @media screen and (min-width: 1024px) {
   .Header {
-    grid-row: 2 / 2;
+    grid-row: 1 / 2;
     align-self: start;
     justify-self: center;
 
