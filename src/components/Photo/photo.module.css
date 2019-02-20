@@ -1,9 +1,0 @@
-.photoPreload,
-.photo {
-  width: 100%;
-  height: calc((50vw - 2em)/3*2);
-}
-
-.boundary {
-  overflow: hidden;
-}
