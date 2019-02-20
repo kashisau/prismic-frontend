@@ -38,12 +38,14 @@
 }
 
 .title {
-  font-size: 1em;
+  font-size: 1.25em;
+  font-style: normal;
+  font-weight: 100;
   line-height: 1.25;
   word-break: keep-all;
   position: absolute;
   z-index: 22;
-  width: 65%;
+  width: 80%;
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
