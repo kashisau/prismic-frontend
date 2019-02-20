@@ -9,7 +9,7 @@ const Header = ({ siteTitle, subtitle, className }) => {
   return (
     <header className={headerClassNames}>
       <h1>{siteTitle}</h1>
-      <h2>{subtitle}</h2>
+      <h2 className={styles.subtitle}>{subtitle}</h2>
     </header>
   )
 }

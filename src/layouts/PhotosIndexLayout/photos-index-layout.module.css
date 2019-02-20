@@ -1,10 +1,12 @@
+@import url('../layouts-common.css');
+
 .Header {
   text-align: center;
   margin: 3rem 1rem 0 1rem;
 }
 
 .intro {
-  margin: 0.25rem 1rem;
+  margin: 0.25rem 1rem 1rem 0.25rem;
   font-size: 0.75em;
   text-align: center;
 }
@@ -17,10 +19,4 @@
   list-style: none;
   padding: 0;
   margin: 0;
-}
-
-@media screen and (min-width: 769px) {
-}
-
-@media screen and (min-width: 1025px) {
 }
