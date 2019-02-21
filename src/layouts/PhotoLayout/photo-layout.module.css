@@ -1,17 +1,5 @@
 @import url('../layouts-common.css');
 
-/* Gradient on homepage */
-body::before {
-  content: '';
-  position: fixed;
-  background: radial-gradient(at top left, #EAE9EF, #F5F5F5);
-  z-index: -1;
-  left: 0;
-  top: 0;
-  bottom: 0;
-  right: 0;
-}
-
 .PageMain {
   padding: 2em 1em;
   display: grid;
@@ -23,14 +11,7 @@ body::before {
   align-self: start;
 }
 
-h1 {
-  font-size: 1.75rem;
-}
-
 @media screen and (min-width: 769px) {
-  body {
-    background: radial-gradient(at top left, #1A57BF, #12377E);
-  }
 
   .PageMain {
     padding: 2em;

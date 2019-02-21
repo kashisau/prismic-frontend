@@ -1,7 +1,6 @@
 import React from 'react'
 import Header from '../../components/Header'
 
-import './translate-fix.css'
 import styles from './frontpage-layout.module.css'
 
 class FrontpageLayout extends React.Component {

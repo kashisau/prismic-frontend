@@ -9,7 +9,9 @@ const PhotoListItem = (photo) => {
   return (
     <li className={styles.photoListItem}>
       <Link to={`/${slug}`} className={styles.link}>
-        <Img className={styles.photo} fluid={photo.file.localFile.childImageSharp.fluid} />
+        <div className={styles.photoFrame}>
+          <Img className={styles.photo} fluid={photo.file.localFile.childImageSharp.fluid} />
+        </div>
         <h2 className={styles.title}>{title.text}</h2>
       </Link>
     </li>
