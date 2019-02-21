@@ -6,7 +6,7 @@
   "dependencies": {
     "classnames": "^2.2.6",
     "fast-exif": "^1.0.1",
-    "gatsby": "^2.1.12",
+    "gatsby": "^2.1.13",
     "gatsby-image": "^2.0.20",
     "gatsby-plugin-manifest": "^2.0.9",
     "gatsby-plugin-offline": "^2.0.16",
@@ -14,7 +14,7 @@
     "gatsby-plugin-sass": "^2.0.10",
     "gatsby-plugin-sharp": "^2.0.20",
     "gatsby-source-filesystem": "^2.0.21",
-    "gatsby-source-prismic": "^2.1.0",
+    "gatsby-source-prismic": "^2.2.0",
     "gatsby-transformer-sharp": "^2.1.13",
     "node-fetch": "^2.3.0",
     "prop-types": "^15.6.2",
@@ -36,6 +36,13 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "devDependencies": {
+    "eslint": "^5.14.1",
+    "eslint-config-standard": "^12.0.0",
+    "eslint-plugin-import": "^2.16.0",
+    "eslint-plugin-node": "^8.0.1",
+    "eslint-plugin-promise": "^4.0.1",
+    "eslint-plugin-react": "^7.12.4",
+    "eslint-plugin-standard": "^4.0.0",
     "prettier": "^1.15.2"
   },
   "repository": {
