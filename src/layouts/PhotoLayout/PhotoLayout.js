@@ -1,13 +1,13 @@
 import React from 'react'
 
-import './photo-layout.module.css'
+import styles from './photo-layout.module.css'
 
 class PhotoLayout extends React.Component {
   render() {
     const { children } = this.props
 
     return (
-      <section className="PageMain">
+      <section className={styles.pageMain}>
       {children}
       </section>
     );
