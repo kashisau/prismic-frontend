@@ -1,19 +1,21 @@
 .photoListItem {
   text-align: center;
-}
-
-.photo {
-  min-width: 100%;
-  min-height: 100%;
+  padding: 0.5em;
 }
 
 .photoFrame {
   display: block;
   overflow: hidden;
-  height: 50vw;
+  height: calc(50vw - 1.5em);
   position: relative;
   margin: 0.0625em;
   padding: 0;
+  border: 0.25em solid white;
+}
+
+.photo {
+  min-width: 100%;
+  min-height: 100%;
 }
 
 .title {
@@ -24,4 +26,5 @@
   word-break: keep-all;
   text-transform: uppercase;
   letter-spacing: -0.08em;
+  margin: 0.5em 0;
 }

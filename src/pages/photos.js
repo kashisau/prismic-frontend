@@ -27,6 +27,12 @@ const PhotosPage = ({data}) => {
     return photos;
   }, []);
 
+  photos.sort((photoA, photoB) => {
+    const photoADate = new Date(photoA.exif.exif.DateTimeOriginal)
+    const photoBDate = new Date(photoB.exif.exif.DateTimeOriginal)
+    return photoADate - photoBDate
+  })
+
   return (
     <PhotosIndexLayout photos={photos}>
       <Seo title="Photos" description="A collection of photos by Kashi Samaraweera" />
