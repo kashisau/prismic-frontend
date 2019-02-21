@@ -1,0 +1,27 @@
+/* Menu collapsed */
+.page {
+  /* transform: translateY(-31rem); */
+  transition: transform 400ms ease-in-out;
+}
+
+.siteHeader {
+  background-color: #2F2F2F;
+  display: grid;
+  grid-auto-rows: auto auto;
+}
+
+.logoType {
+  font-size: 1.25rem;
+  word-spacing: 100vw;
+  max-width: 50%;
+  color: white;
+  grid-row: 2 / 2;
+  padding: 1.5rem;
+}
+
+.siteNav {
+  grid-row: 1 / 2;
+  height: 28rem;
+  padding: 1.5rem;
+  background: #171717;
+}

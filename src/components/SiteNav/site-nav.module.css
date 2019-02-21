@@ -1,0 +1,43 @@
+.title {
+  font-size: 2.65rem;
+  color: #696969;
+  line-height: 1;
+  padding: 0;
+  font-family: 'Merriweather Sans', sans-serif;
+  font-style: normal;
+  text-transform: uppercase;
+  text-align: center;
+  grid-row: 1 / 1;
+}
+
+.nav {
+  display: grid;
+  grid-template-rows: min-content auto;
+}
+
+.menu {
+  grid-row: 2 / 2;
+  align-self: center;
+  list-style: none;
+  padding: 0;
+}
+
+.menu li {
+  padding: 0;
+}
+
+.menu li a {
+  display: block;
+  color: white;
+  padding: 0.5em;
+  line-height: 2;
+  font-size: 1.5rem;
+  font-family: 'Merriweather Sans', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: -0.08em;
+  text-align: center;
+}
+
+.menu li a:hover {
+  border-bottom: none;
+}

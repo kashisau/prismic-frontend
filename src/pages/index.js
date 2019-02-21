@@ -1,6 +1,6 @@
 import React from 'react'
 import { graphql } from 'gatsby'
-import FrontpageLayout from '../layouts/FrontpageLayout'
+import StandardLayout from '../layouts/StandardLayout'
 import Seo from '../components/Seo'
 
 const IndexPage = ({data}) => {
@@ -8,12 +8,12 @@ const IndexPage = ({data}) => {
   const { title, subtitle, body } = homepageData;
 
   return (
-    <FrontpageLayout
+    <StandardLayout
       title={title.text}
       subtitle={subtitle.text}
       body={body.html}>
       <Seo title={title.text} />
-    </FrontpageLayout>
+    </StandardLayout>
   )
 }
 
