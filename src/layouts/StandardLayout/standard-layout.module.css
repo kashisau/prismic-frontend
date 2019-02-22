@@ -110,13 +110,17 @@
   width: 2.5rem;
 }
 
+.body {
+  margin: 1em;
+}
+
 @media screen and (min-width: 768px) {
   .headerCollapsed .pageHeadingGroup,
   .headerCollapsed .menuToggle {
     margin: 0.25rem 1.5rem;
   }
   .pageHeadingGroup {
-    grid-template-columns: min-content auto min-content min-content;
+    grid-template-columns: min-content auto;
     grid-template-rows: min-content;
     margin: 0.25rem 1.5rem;
   }
@@ -128,6 +132,7 @@
   .siteHeader h1.logoType {
     grid-column: 1 / 1;
     grid-row: 1 / 1;
+    padding: 0 3rem 0 0;
   }
 
   .pageHeadingGroup h2 {
@@ -163,8 +168,9 @@
 
   .siteNav {
     grid-row: 1 / 1;
-    grid-column: 3 / 3;
+    grid-column: 2 / 2;
     height: auto;
-    padding: 0;
+    padding: 0 1em;
+    justify-self: end;
   }
 }

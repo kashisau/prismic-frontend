@@ -4,7 +4,12 @@ import classNames from 'classnames/bind'
 
 import styles from './standard-layout.module.css'
 
-const StandardLayout = ({children, subtitle = "photos", title = "There was movement at the station for the word had passed around"}) => {
+const StandardLayout = (
+  {
+    children,
+    subtitle = "Section name",
+    title = "Page title"
+  }) => {
   const [menuActive, setMenuActive] = useState(false)
   const [headerCollapsed, setHeaderCollapsed] = useState(true)
   const [titleActive, setTitleActive] = useState(false)
@@ -26,7 +31,7 @@ const StandardLayout = ({children, subtitle = "photos", title = "There was movem
               {subtitle && <h2 className={styles.subtitle}>{subtitle}</h2>}
               <h1 className={styles.title}>{title}</h1>
             </div>
-            <h1 className={styles.logoType} {...(!titleActive? {'aria-hidden':true} : {})}>Logo Name</h1>
+            <h1 className={styles.logoType} {...(!titleActive? {'aria-hidden':true} : {})}>Kashi Samaraweera</h1>
           </hgroup>
           ||
           <h1 className={styles.logoType}>Logo Name</h1>
@@ -36,7 +41,9 @@ const StandardLayout = ({children, subtitle = "photos", title = "There was movem
           onClick={_ => { setMenuActive(!menuActive); setTitleActive(!titleActive); setHeaderCollapsed(!headerCollapsed)}}>Menu</button>
         <SiteNav className={styles.siteNav} isActive={menuActive} />
       </header>
-      {children}
+      <main className={styles.body}>
+        {children}
+      </main>
     </div>
   )
 }
