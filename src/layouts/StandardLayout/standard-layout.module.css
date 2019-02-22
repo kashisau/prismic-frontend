@@ -1,11 +1,20 @@
 /* Menu collapsed */
 .page {
   transform: translateY(-31rem);
-  transition: transform 400ms ease-in-out;
+  transition: transform 400ms ease-in-out 800ms;
 }
 
 .menuActive {
   transform: translateY(0);
+}
+
+.pageHeadings,
+.logoType {
+  transition: transform 800ms ease-in-out;
+}
+.titleActive .pageHeadings,
+.titleActive .logoType {
+  transform: translateY(-2.5rem);
 }
 
 .siteHeader {
@@ -15,22 +24,46 @@
   grid-template-columns: auto min-content;
 }
 
-.menuToggle {
-  width: 2.5rem;
+.pageHeadingGroup {
+  display: grid;
+  grid-template-columns: auto;
+  grid-template-rows: repeat(2, 2.5rem);
+  margin: 1.5rem 1rem;
+
   height: 2.5rem;
-  grid-row: 2 / 2;
-  grid-column: 2 / 2;
-  margin: 1.5rem;
+  overflow: hidden;
 }
 
-.logoType {
-  font-size: 1.25rem;
-  word-spacing: 100vw;
-  max-width: 50%;
+.siteHeader h1 {
+  font-size: 1rem;
   color: white;
   grid-row: 2 / 2;
-  padding: 1.5rem;
+  line-height: 1;
+  padding: 0;
 }
+
+.pageHeadingGroup h2 {
+  font-size: 0.5rem;
+  line-height: 1;
+  grid-row: 1 / 1;
+  padding: 0;
+  color: white;
+  text-transform: uppercase;
+}
+
+.siteHeader h1.pageTitle {
+  font-size: 0.75em;
+  grid-row: 2 / 2;
+  max-height: 1.5rem;
+  overflow: hidden;
+}
+
+.siteHeader h1.logoType {
+  word-spacing: 100vw;
+  font-size: 1.25em;
+  grid-row: 2 / 2;
+}
+
 
 .siteNav {
   grid-row: 1 / 2;
@@ -38,4 +71,18 @@
   height: 28rem;
   padding: 1.5rem;
   background: #171717;
+}
+
+
+.menuToggle {
+  color: white;
+  text-transform: uppercase;
+  grid-row: 2 / 2;
+  grid-column: 2 / 2;
+
+  font-size: 1.5rem;
+  padding: 0.5em;
+  margin: 1.5rem;
+  line-height: 1;
+  margin: 0;
 }
