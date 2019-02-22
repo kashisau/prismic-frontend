@@ -1,7 +1,7 @@
 @import url('../layouts-common.css');
 
 .pageMain {
-  padding: 2em 1em;
+  padding: 0;
   display: grid;
   grid-template-columns: auto;
   grid-template-rows: auto;

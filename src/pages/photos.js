@@ -2,6 +2,7 @@ import React from 'react'
 import { graphql } from 'gatsby'
 import Seo from '../components/Seo'
 import PhotosIndexLayout from '../layouts/PhotosIndexLayout'
+import StandardLayout from '../layouts/StandardLayout'
 import AspectRatio from '../services/AspectRatio'
 
 const PhotosPage = ({data}) => {
@@ -34,9 +35,12 @@ const PhotosPage = ({data}) => {
   })
 
   return (
-    <PhotosIndexLayout photos={photos}>
+    <StandardLayout
+      title="Kashi's Photos"
+      subtitle="Photos">
+      <PhotosIndexLayout photos={photos}></PhotosIndexLayout>
       <Seo title="Photos" description="A collection of photos by Kashi Samaraweera" />
-    </PhotosIndexLayout>
+    </StandardLayout>
   )
 }
 

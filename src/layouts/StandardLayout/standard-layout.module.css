@@ -26,6 +26,7 @@
 .headerCollapsed .pageHeadingGroup,
 .headerCollapsed .menuToggle {
   margin: 0.25rem 1rem;
+  transition: margin-top 200ms ease-in-out 0, margin-bottom 200ms ease-in-out 0;
 }
 
 .pageHeadingGroup {
