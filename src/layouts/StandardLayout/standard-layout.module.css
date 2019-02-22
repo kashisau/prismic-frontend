@@ -1,20 +1,39 @@
 /* Menu collapsed */
 .page {
   transform: translateY(-31rem);
-  transition: transform 400ms ease-in-out 800ms;
+  transition: transform 400ms ease-in-out;
 }
 
+/* Menu activation */
 .menuActive {
   transform: translateY(0);
 }
 
 .pageHeadings,
 .logoType {
-  transition: transform 800ms ease-in-out;
+  transition: transform 200ms ease-in-out 800ms, opacity 200ms ease-in 800ms;
 }
 .titleActive .pageHeadings,
 .titleActive .logoType {
   transform: translateY(-2.5rem);
+}
+.titleActive .pageHeadings {
+  opacity: 0;
+}
+
+.titleActive .siteHeader h1.logoType {
+  opacity: 1;
+}
+
+/* Header collapse and expansion */
+.pageHeadingGroup,
+.menuToggle {
+  transition: margin 200ms ease-in-out 800ms;
+}
+
+.headerCollapsed .pageHeadingGroup,
+.headerCollapsed .menuToggle {
+  margin: 0.25rem 1rem;
 }
 
 .siteHeader {
@@ -36,7 +55,7 @@
 
 .siteHeader h1 {
   font-size: 1rem;
-  color: white;
+  color: #F5F5F5;
   grid-row: 2 / 2;
   line-height: 1;
   padding: 0;
@@ -46,8 +65,8 @@
   font-size: 0.5rem;
   line-height: 1;
   grid-row: 1 / 1;
-  padding: 0;
-  color: white;
+  padding: 0.25rem 0 0 0;
+  color: #EAE9EF;
   text-transform: uppercase;
 }
 
@@ -79,10 +98,14 @@
   text-transform: uppercase;
   grid-row: 2 / 2;
   grid-column: 2 / 2;
-
-  font-size: 1.5rem;
+  font-size: 0.5rem;
   padding: 0.5em;
   margin: 1.5rem;
   line-height: 1;
-  margin: 0;
+  margin: 1.5rem 1rem;
+  display: inline;
+  justify-self: center;
+  height: 2.5rem;
+  padding: 0;
+  width: 2.5rem;
 }
