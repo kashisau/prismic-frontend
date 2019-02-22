@@ -41,3 +41,26 @@
 .menu li a:hover {
   border-bottom: none;
 }
+
+@media screen and (min-width: 768px) {
+  .title {
+    display: none;
+  }
+  .nav {
+    grid-auto-columns: auto;
+  }
+  .menu {
+    grid-column: 1 / 1;
+    margin: 0;
+  }
+
+  .menu li {
+    padding: 0;
+    display: inline;
+  }
+  .menu li a {
+    display: inline-block;
+    font-size: 1rem;
+    padding: 0 0.5em;
+  }
+}

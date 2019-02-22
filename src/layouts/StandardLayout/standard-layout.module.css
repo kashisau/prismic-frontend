@@ -1,19 +1,10 @@
-/* Menu collapsed */
-.page {
-  transform: translateY(-31rem);
-  transition: transform 400ms ease-in-out;
-}
-
-/* Menu activation */
-.menuActive {
-  transform: translateY(0);
-}
-
 .pageHeadings,
 .logoType {
   transition: transform 200ms ease-in-out 800ms, opacity 200ms ease-in 800ms;
   align-self: center;
 }
+
+/* Title activation */
 .titleActive .pageHeadings,
 .titleActive .logoType {
   transform: translateY(-2.5rem);
@@ -29,19 +20,12 @@
 /* Header collapse and expansion */
 .pageHeadingGroup,
 .menuToggle {
-  transition: margin 200ms ease-in-out 800ms;
+  transition: margin-top 200ms ease-in-out 800ms, margin-bottom 200ms ease-in-out 800ms;
 }
 
 .headerCollapsed .pageHeadingGroup,
 .headerCollapsed .menuToggle {
   margin: 0.25rem 1rem;
-}
-
-.siteHeader {
-  background-color: #2F2F2F;
-  display: grid;
-  grid-auto-rows: auto auto;
-  grid-template-columns: auto min-content;
 }
 
 .pageHeadingGroup {
@@ -66,7 +50,7 @@
   font-size: 0.5rem;
   line-height: 1;
   grid-row: 1 / 1;
-  padding: 0.25rem 0 0 0;
+  padding: 0.125rem 0 0 0;
   color: #EAE9EF;
   text-transform: uppercase;
 }
@@ -84,6 +68,23 @@
   grid-row: 2 / 2;
 }
 
+.siteHeader {
+  background-color: #2F2F2F;
+  display: grid;
+  grid-auto-rows: auto auto;
+  grid-template-columns: auto min-content;
+}
+
+/* Menu collapsed */
+.page {
+  transform: translateY(-31rem);
+  transition: transform 400ms ease-in-out;
+}
+
+/* Menu activation */
+.menuActive {
+  transform: translateY(0);
+}
 
 .siteNav {
   grid-row: 1 / 2;
@@ -93,14 +94,12 @@
   background: #171717;
 }
 
-
 .menuToggle {
   color: white;
   text-transform: uppercase;
   grid-row: 2 / 2;
   grid-column: 2 / 2;
   font-size: 0.5rem;
-  padding: 0.5em;
   margin: 1.5rem;
   line-height: 1;
   margin: 1.5rem 1rem;
@@ -109,4 +108,63 @@
   height: 2.5rem;
   padding: 0;
   width: 2.5rem;
+}
+
+@media screen and (min-width: 768px) {
+  .headerCollapsed .pageHeadingGroup,
+  .headerCollapsed .menuToggle {
+    margin: 0.25rem 1.5rem;
+  }
+  .pageHeadingGroup {
+    grid-template-columns: min-content auto min-content min-content;
+    grid-template-rows: min-content;
+    margin: 0.25rem 1.5rem;
+  }
+  .pageHeadings {
+    justify-self: center;
+    display: grid;
+    grid-template-columns: min-content auto;
+  }
+  .siteHeader h1.logoType {
+    grid-column: 1 / 1;
+    grid-row: 1 / 1;
+  }
+
+  .pageHeadingGroup h2 {
+    grid-column: 1 / 1;
+    grid-row: 1 / 1;
+    font-size: 0.75em;
+    padding: 0 0.25em 0 0;
+    align-self: end;
+  }
+
+  .pageHeadingGroup h2::after {
+    content: "//";
+    padding: 0 0.25em;
+  }
+
+  .siteHeader h1.title {
+    grid-column: 2 / 2;
+    grid-row: 1 / 1;
+    display: inline-block;
+    font-size: 1em;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .menuToggle {
+    display: none;
+  }
+
+  .page {
+    transform: translateY(0);
+  }
+
+  .siteNav {
+    grid-row: 1 / 1;
+    grid-column: 3 / 3;
+    height: auto;
+    padding: 0;
+  }
 }
