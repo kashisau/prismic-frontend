@@ -12,6 +12,7 @@
 .pageHeadings,
 .logoType {
   transition: transform 200ms ease-in-out 800ms, opacity 200ms ease-in 800ms;
+  align-self: center;
 }
 .titleActive .pageHeadings,
 .titleActive .logoType {
@@ -70,7 +71,7 @@
   text-transform: uppercase;
 }
 
-.siteHeader h1.pageTitle {
+.siteHeader h1.title {
   font-size: 0.75em;
   grid-row: 2 / 2;
   max-height: 1.5rem;

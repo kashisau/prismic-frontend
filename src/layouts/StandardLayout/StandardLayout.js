@@ -4,15 +4,15 @@ import classNames from 'classnames/bind'
 
 import styles from './standard-layout.module.css'
 
-const StandardLayout = ({children, section = "photos", pageTitle = "There was movement at the station for the word had passed around"}) => {
-  const [menuActive, setMenuActive] = useState(true)
+const StandardLayout = ({children, subtitle = "photos", title = "There was movement at the station for the word had passed around"}) => {
+  const [menuActive, setMenuActive] = useState(false)
   const [headerCollapsed, setHeaderCollapsed] = useState(true)
-  const [titleActive, setTitleActive] = useState(true)
+  const [titleActive, setTitleActive] = useState(false)
 
   const activeClasses = classNames.bind(styles)
 
   return (
-    <div 
+    <div
       className={activeClasses(
         'page',
         { 'menuActive': menuActive },
@@ -20,11 +20,11 @@ const StandardLayout = ({children, section = "photos", pageTitle = "There was mo
         { 'titleActive': titleActive }
       )}>
       <header className={styles.siteHeader}>
-        {pageTitle && section &&
+        {title &&
           <hgroup className={styles.pageHeadingGroup}>
             <div className={styles.pageHeadings} {...(!titleActive? {'aria-hidden':true} : {})}>
-              <h2 className={styles.section}>{section}</h2>
-              <h1 className={styles.pageTitle}>{pageTitle}</h1>
+              {subtitle && <h2 className={styles.subtitle}>{subtitle}</h2>}
+              <h1 className={styles.title}>{title}</h1>
             </div>
             <h1 className={styles.logoType} {...(!titleActive? {'aria-hidden':true} : {})}>Logo Name</h1>
           </hgroup>
@@ -33,10 +33,10 @@ const StandardLayout = ({children, section = "photos", pageTitle = "There was mo
         }
         <button
           className={styles.menuToggle}
-          onClick={e => { setMenuActive(!menuActive); setTitleActive(!titleActive); setHeaderCollapsed(!headerCollapsed)}}>Menu</button>
+          onClick={_ => { setMenuActive(!menuActive); setTitleActive(!titleActive); setHeaderCollapsed(!headerCollapsed)}}>Menu</button>
         <SiteNav className={styles.siteNav} isActive={menuActive} />
-        {children}
       </header>
+      {children}
     </div>
   )
 }

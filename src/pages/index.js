@@ -9,9 +9,9 @@ const IndexPage = ({data}) => {
 
   return (
     <StandardLayout
-      title={title.text}
-      subtitle={subtitle.text}
-      body={body.html}>
+    title={title.text}
+    subtitle={subtitle.text}>
+      <section dangerouslySetInnerHTML={{ __html: body.html}} />
       <Seo title={title.text} />
     </StandardLayout>
   )
