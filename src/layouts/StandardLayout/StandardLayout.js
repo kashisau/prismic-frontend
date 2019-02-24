@@ -7,14 +7,14 @@ import styles from './standard-layout.module.css'
 const StandardLayout = (
   {
     children,
-    hasMenuActive = false,
     hasHeaderCollapsed = false,
     hasTitleActive = false,
     subtitle,
     title
   }) => {
 
-  const [menuActive, setMenuActive] = useState(hasMenuActive)
+  const [menuFloat, setMenuFloat] = useState(true)
+  const [menuActive, setMenuActive] = useState(false)
   const [headerCollapsed, setHeaderCollapsed] = useState(hasHeaderCollapsed)
   const [titleActive, setTitleActive] = useState(!title || hasTitleActive)
 
@@ -24,22 +24,23 @@ const StandardLayout = (
     <div
       className={activeClasses(
         'page',
-        { 'menuActive': menuActive },
+        { 'menuFloat': menuFloat },
+        { 'titleActive': titleActive },
         { 'headerCollapsed': headerCollapsed },
-        { 'titleActive': titleActive }
+        { 'menuActive': menuActive }
       )}>
-      <header className={styles.siteHeader} onClick={e => setTitleActive(!title || !titleActive)}>
-          <hgroup className={styles.pageHeadingGroup}>
-            <div className={styles.pageHeadings} {...(!titleActive? {'aria-hidden':true} : {})}>
-              {subtitle && <h2 className={styles.subtitle}>{subtitle}</h2>}
-              {title && <h1 className={styles.title}>{title}</h1>}
-            </div>
-            <span className={classNames(styles.h1, styles.logoType)} {...(!titleActive? {'aria-hidden':true} : {})}>Kashi Samaraweera</span>
-            <span className={styles.logoTypeSubtitle}>Web application developer</span>
-          </hgroup>
+      <header className={styles.siteHeader}>
+        <hgroup className={styles.pageHeadingGroup}>
+          <div className={styles.pageHeadings}>
+            {subtitle && <h2 className={styles.subtitle}>{subtitle}</h2>}
+            {title && <h1 className={styles.title}>{title}</h1>}
+          </div>
+          <span className={classNames(styles.h1, styles.logoType)}>Kashi Samaraweera</span>
+          <span className={styles.logoTypeSubtitle}>Web application developer</span>
+        </hgroup>
         <button
           className={styles.menuToggle}
-          onClick={_ => { setMenuActive(!menuActive); setTitleActive(!titleActive); setHeaderCollapsed(!headerCollapsed)}}>Menu</button>
+          onClick={_ => { setMenuActive(!menuActive)}}>Menu</button>
         <SiteNav className={styles.siteNav} isActive={menuActive} />
       </header>
       <main className={styles.body}>
