@@ -155,6 +155,9 @@
   width: 2.5rem;
 }
 
+.body {
+  margin: 1em;
+}
 .menuFloat .body {
   margin: 1em;
   padding-top: 5.5em;
@@ -266,7 +269,7 @@
   .menuToggle {
     display: none;
   }
-
+  
   .menuFloat .body {
     margin: 1em;
     padding-top: 9.5em;
