@@ -21,12 +21,12 @@ const StandardLayout = (
 
   const activeClasses = classNames.bind(styles)
 
-  window.addEventListener('scroll', (e) => {
+  window.addEventListener('scroll', _ => {
     const scrollPos = window.scrollY;
     if (scrollPos > 1)
-    setHeaderCollapsed(true)
+      setHeaderCollapsed(true)
     else
-    setHeaderCollapsed(false)
+      setHeaderCollapsed(false)
   })
 
   return (

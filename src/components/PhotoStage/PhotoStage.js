@@ -1,11 +1,11 @@
 import React from 'react'
-import styles from './photo-stage.module.css'
 import Img from 'gatsby-image'
-import { ago } from 'time-ago'
 import iconCamera from '../../images/icon-camera.svg'
 import iconAperture from '../../images/icon-apeture.svg'
 import iconFocalLength from '../../images/icon-lens.svg'
 import iconShutterSpeed from '../../images/icon-shutter.svg'
+
+import styles from './photo-stage.module.css'
 
 const PhotoStage = (photoData) => {
   const { photo } = photoData
@@ -22,10 +22,10 @@ const PhotoStage = (photoData) => {
           fluid={photo.file.localFile.childImageSharp.fluid}
           alt={photoTitle} />
         <ul className={styles.data}>
-          <li className={styles.cameraModel}><img className={styles.infoIcon} src={iconCamera} alt="Camera" />{exif.image.Model}</li>
-          <li className={styles.focalLength}><img className={styles.infoIcon} src={iconFocalLength} alt="Focal length" />{exif.exif.FocalLength}mm</li>
           <li className={styles.aperture}><img className={styles.infoIcon} src={iconAperture} alt="Aperture" />f/{exif.exif.FNumber}</li>
           <li className={styles.shutterSeed}><img className={styles.infoIcon} src={iconShutterSpeed} alt="Shutter speed" />{exposureString}</li>
+          <li className={styles.focalLength}><img className={styles.infoIcon} src={iconFocalLength} alt="Focal length" />{exif.exif.FocalLength}mm</li>
+          <li className={styles.filmSpeed}><img className={styles.infoIcon} src={iconCamera} alt="Film speed" />ISO {exif.exif.ISO}</li>
         </ul>
       </header>
       <div className={styles.description} dangerouslySetInnerHTML={{__html: photo.description.html}} />
