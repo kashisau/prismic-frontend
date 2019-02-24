@@ -9,11 +9,12 @@ const StandardLayout = (
     children,
     hasHeaderCollapsed = false,
     hasTitleActive = false,
+    hasMenuFloat = false,
     subtitle,
     title
   }) => {
 
-  const [menuFloat, setMenuFloat] = useState(true)
+  const [menuFloat, setMenuFloat] = useState(hasMenuFloat)
   const [menuActive, setMenuActive] = useState(false)
   const [headerCollapsed, setHeaderCollapsed] = useState(hasHeaderCollapsed)
   const [titleActive, setTitleActive] = useState(!title || hasTitleActive)

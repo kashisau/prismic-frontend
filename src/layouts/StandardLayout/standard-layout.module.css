@@ -86,7 +86,7 @@
 
 /* Menu collapsed */
 .page {
-  transform: translateY(-31rem);
+  transform: translateY(calc(-100vh + 4.5rem));
   transition: transform 400ms ease-in-out;
 }
 
