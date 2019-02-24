@@ -120,7 +120,7 @@
 
 /* Menu activation */
 .menuActive {
-  transform: translateY(0);
+  transform: translateY(-1rem);
 }
 
 .menuFloat.menuActive .siteHeader {
@@ -157,6 +157,7 @@
 
 .body {
   margin: 1em;
+  transition: padding 400ms ease-in-out;
 }
 .menuFloat .body {
   margin: 1em;

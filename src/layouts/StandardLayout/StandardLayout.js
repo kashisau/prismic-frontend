@@ -9,7 +9,7 @@ const StandardLayout = (
     children,
     hasHeaderCollapsed = false,
     hasTitleActive = false,
-    hasMenuFloat = false,
+    hasMenuFloat = true,
     subtitle,
     title
   }) => {
@@ -20,6 +20,14 @@ const StandardLayout = (
   const [titleActive, setTitleActive] = useState(!title || hasTitleActive)
 
   const activeClasses = classNames.bind(styles)
+
+  window.addEventListener('scroll', (e) => {
+    const scrollPos = window.scrollY;
+    if (scrollPos > 1)
+    setHeaderCollapsed(true)
+    else
+    setHeaderCollapsed(false)
+  })
 
   return (
     <div
@@ -36,8 +44,8 @@ const StandardLayout = (
             {subtitle && <h2 className={styles.subtitle}>{subtitle}</h2>}
             {title && <h1 className={styles.title}>{title}</h1>}
           </div>
-          <span className={classNames(styles.h1, styles.logoType)}>Kashi Samaraweera</span>
-          <span className={styles.logoTypeSubtitle}>Web application developer</span>
+          <span className={classNames(styles.h1, styles.logoType)}>Sliding menu</span>
+          <span className={styles.logoTypeSubtitle}>Standard web app</span>
         </hgroup>
         <button
           className={styles.menuToggle}

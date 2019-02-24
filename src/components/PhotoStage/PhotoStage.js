@@ -21,9 +21,7 @@ const PhotoStage = (photoData) => {
           className={styles.imageWrapper}
           fluid={photo.file.localFile.childImageSharp.fluid}
           alt={photoTitle} />
-        <h1 className={styles.h1}>{photoTitle}</h1>
         <ul className={styles.data}>
-          <li className={styles.photoDate}><time dateTime={photoDate.toISOString()}>{ago(photoDate)}</time></li>
           <li className={styles.cameraModel}><img className={styles.infoIcon} src={iconCamera} alt="Camera" />{exif.image.Model}</li>
           <li className={styles.focalLength}><img className={styles.infoIcon} src={iconFocalLength} alt="Focal length" />{exif.exif.FocalLength}mm</li>
           <li className={styles.aperture}><img className={styles.infoIcon} src={iconAperture} alt="Aperture" />f/{exif.exif.FNumber}</li>
