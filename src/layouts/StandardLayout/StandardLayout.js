@@ -7,12 +7,16 @@ import styles from './standard-layout.module.css'
 const StandardLayout = (
   {
     children,
-    subtitle = "Section name",
-    title = "Page title"
+    hasMenuActive = false,
+    hasHeaderCollapsed = false,
+    hasTitleActive = false,
+    subtitle,
+    title
   }) => {
-  const [menuActive, setMenuActive] = useState(false)
-  const [headerCollapsed, setHeaderCollapsed] = useState(true)
-  const [titleActive, setTitleActive] = useState(false)
+
+  const [menuActive, setMenuActive] = useState(hasMenuActive)
+  const [headerCollapsed, setHeaderCollapsed] = useState(hasHeaderCollapsed)
+  const [titleActive, setTitleActive] = useState(!title || hasTitleActive)
 
   const activeClasses = classNames.bind(styles)
 
@@ -24,18 +28,15 @@ const StandardLayout = (
         { 'headerCollapsed': headerCollapsed },
         { 'titleActive': titleActive }
       )}>
-      <header className={styles.siteHeader}>
-        {title &&
+      <header className={styles.siteHeader} onClick={e => setTitleActive(!title || !titleActive)}>
           <hgroup className={styles.pageHeadingGroup}>
             <div className={styles.pageHeadings} {...(!titleActive? {'aria-hidden':true} : {})}>
               {subtitle && <h2 className={styles.subtitle}>{subtitle}</h2>}
-              <h1 className={styles.title}>{title}</h1>
+              {title && <h1 className={styles.title}>{title}</h1>}
             </div>
-            <h1 className={styles.logoType} {...(!titleActive? {'aria-hidden':true} : {})}>Kashi Samaraweera</h1>
+            <span className={classNames(styles.h1, styles.logoType)} {...(!titleActive? {'aria-hidden':true} : {})}>Kashi Samaraweera</span>
+            <span className={styles.logoTypeSubtitle}>Web application developer</span>
           </hgroup>
-          ||
-          <h1 className={styles.logoType}>Logo Name</h1>
-        }
         <button
           className={styles.menuToggle}
           onClick={_ => { setMenuActive(!menuActive); setTitleActive(!titleActive); setHeaderCollapsed(!headerCollapsed)}}>Menu</button>

@@ -1,6 +1,9 @@
+@import url('../layouts-common.css');
+@import url('../headings-common.css');
+
 .pageHeadings,
 .logoType {
-  transition: transform 200ms ease-in-out 800ms, opacity 200ms ease-in 800ms;
+  transition: transform 400ms ease-in-out, opacity 400ms ease-in;
   align-self: center;
 }
 
@@ -13,20 +16,20 @@
   opacity: 0;
 }
 
-.titleActive .siteHeader h1.logoType {
+.titleActive .logoType {
   opacity: 1;
 }
 
 /* Header collapse and expansion */
 .pageHeadingGroup,
 .menuToggle {
-  transition: margin-top 200ms ease-in-out 800ms, margin-bottom 200ms ease-in-out 800ms;
+  transition: margin-top 400ms ease-in-out, margin-bottom 400ms ease-in-out;
 }
 
 .headerCollapsed .pageHeadingGroup,
 .headerCollapsed .menuToggle {
   margin: 0.25rem 1rem;
-  transition: margin-top 200ms ease-in-out 0, margin-bottom 200ms ease-in-out 0;
+  transition: margin-top 400ms ease-in-out 0, margin-bottom 400ms ease-in-out 0;
 }
 
 .pageHeadingGroup {
@@ -39,34 +42,48 @@
   overflow: hidden;
 }
 
+.logoType,
 .siteHeader h1 {
   font-size: 1rem;
   color: #F5F5F5;
-  grid-row: 2 / 2;
   line-height: 1;
   padding: 0;
+  transform-origin: 0 0;
+  transition: all 400ms ease-in-out;
 }
 
+.logoTypeSubtitle,
 .pageHeadingGroup h2 {
   font-size: 0.5rem;
   line-height: 1;
-  grid-row: 1 / 1;
   padding: 0.125rem 0 0 0;
   color: #EAE9EF;
   text-transform: uppercase;
 }
 
-.siteHeader h1.title {
+.siteHeader .title {
   font-size: 0.75em;
   grid-row: 2 / 2;
   max-height: 1.5rem;
   overflow: hidden;
 }
 
-.siteHeader h1.logoType {
+.subtitle {
+  grid-row: 1 / 1;
+}
+
+.logoType {
+  composes: h1 from '../headings-common.css';
   word-spacing: 100vw;
   font-size: 1.25em;
   grid-row: 2 / 2;
+}
+
+.logoTypeSubtitle {
+  composes: h2 from '../headings-common.css';
+  display: none;
+  grid-row: 1 / 1;
+  grid-column: 1 / 1;
 }
 
 .siteHeader {
@@ -119,21 +136,69 @@
   .headerCollapsed .pageHeadingGroup,
   .headerCollapsed .menuToggle {
     margin: 0.25rem 1.5rem;
+    height: auto;
   }
   .pageHeadingGroup {
+    transition:
+      margin 400ms ease-in-out,
+      height 400ms ease-in-out;
     grid-template-columns: min-content auto;
     grid-template-rows: min-content;
+    margin: 2rem 1.5rem 5rem 1.5rem;
+    overflow: visible;
+  }
+
+  .headerCollapsed .pageHeadingGroup {
     margin: 0.25rem 1.5rem;
   }
+
+  .titleActive .pageHeadings,
   .pageHeadings {
-    justify-self: center;
+    opacity: 1;
     display: grid;
+    justify-self: center;
     grid-template-columns: min-content auto;
+    grid-template-rows: auto auto;
+    grid-row: 1 / 1;
+    grid-column: 2 / 2;
+    transform: none;
   }
-  .siteHeader h1.logoType {
+  .titleActive .logoType,
+  .logoType {
     grid-column: 1 / 1;
     grid-row: 1 / 1;
     padding: 0 3rem 0 0;
+    transform: scale(1.5);
+  }
+
+  .headerCollapsed .logoType {
+    transform: none;
+  }
+
+  .logoTypeSubtitle {
+    font-size: 0.775rem;
+    font-weight: 700;
+    font-style: normal;
+    color: #BCBCBC;
+    display: block;
+    white-space: nowrap;
+    padding: 0.25em;
+    transform: translateY(160%);
+    opacity: 1;
+    transition: 
+      transform 400ms ease-in-out 400ms, 
+      opacity 400ms ease-in-out 400ms;
+  }
+  .logoTypeSubtitle::after {
+    content: none;
+    display: none;
+  }
+
+  .headerCollapsed .logoTypeSubtitle {
+    opacity: 0;
+    transition: 
+      transform 400ms ease-in-out, 
+      opacity 400ms ease-in-out;
   }
 
   .pageHeadingGroup h2 {
@@ -149,7 +214,7 @@
     padding: 0 0.25em;
   }
 
-  .siteHeader h1.title {
+  .siteHeader .title {
     grid-column: 2 / 2;
     grid-row: 1 / 1;
     display: inline-block;
@@ -172,6 +237,13 @@
     grid-column: 2 / 2;
     height: auto;
     padding: 0 1em;
+    margin: 0 0 2rem 0;
     justify-self: end;
+    align-self: end;
+    transition: margin 400ms ease-in-out;
+  }
+
+  .headerCollapsed .siteNav {
+    margin: 0;
   }
 }

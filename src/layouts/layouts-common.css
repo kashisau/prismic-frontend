@@ -12,7 +12,7 @@ html {
 
 body {
   min-height: 100vh;
-  transition: background 500ms ease-in-out;
+  transition: background-color 500ms ease-in-out;
   color: #000000;
 
   font-family: 'Martel', sans-serif;
@@ -23,32 +23,6 @@ body {
   line-height: 1.75;
   padding: 0;
   margin: 0;
-}
-
-h1, h2, h3 {
-  font-family: 'Josefin Sans', serif;
-  font-weight: 100;
-  font-style: italic;
-  line-height: 0.85;
-  padding: 0;
-  margin: 0;
-}
-
-h1 {
-  font-family: 'Merriweather Sans', sans-serif;
-  letter-spacing: -0.08em;
-  font-size: 3em;
-  font-style: normal;
-  font-weight: 800;
-  padding: 0 0 0.33em 0;
-}
-
-h2 {
-  font-size: 1.8125em;
-  letter-spacing: -0.04em;
-  line-height: 1.25;
-  color: #0059BF;
-  padding: 0 0 0.5em 0;
 }
 
 a {
