@@ -1,5 +1,8 @@
 import React from 'react'
 import Img from 'gatsby-image'
+import dms2dec from 'dms2dec'
+import Map from '../Map'
+
 import iconCamera from '../../images/icon-camera.svg'
 import iconAperture from '../../images/icon-apeture.svg'
 import iconFocalLength from '../../images/icon-lens.svg'
@@ -14,6 +17,8 @@ const PhotoStage = (photoData) => {
   const photoDate = new Date(exif.exif.DateTimeOriginal)
   const exposureTime = exif.exif.ExposureTime
   const exposureString = (exposureTime >= 1)? `${exposureTime}s` : `1/${parseInt(1/exposureTime)}s`
+  const { gps : { GPSLatitude, GPSLatitudeRef, GPSLongitude, GPSLongitudeRef } } = exif;
+  const [lat, lng] = dms2dec(GPSLatitude, GPSLatitudeRef, GPSLongitude, GPSLongitudeRef);
 
   return (<article>
       <header>
@@ -29,6 +34,7 @@ const PhotoStage = (photoData) => {
         </ul>
       </header>
       <div className={styles.description} dangerouslySetInnerHTML={{__html: photo.description.html}} />
+      <Map lat={lat} lng={lng} />
     </article>)
 }
 

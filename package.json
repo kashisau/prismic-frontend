@@ -5,6 +5,7 @@
   "author": "Kyle Mathews <mathews.kyle@gmail.com>",
   "dependencies": {
     "classnames": "^2.2.6",
+    "dms2dec": "^1.1.0",
     "eslint-config-standard": "^12.0.0",
     "eslint-plugin-node": "^8.0.1",
     "fast-exif": "^1.0.1",
