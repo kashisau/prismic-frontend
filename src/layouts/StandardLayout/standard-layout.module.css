@@ -170,6 +170,7 @@
 @media screen and (min-width: 768px) {
   .menuFloat .siteHeader {
     transform: none;
+    top: 0;
   }
 
   .menuFloat.headerCollapsed .siteHeader {

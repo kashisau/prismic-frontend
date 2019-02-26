@@ -4,9 +4,9 @@ import classNames from 'classnames/bind'
 
 import styles from './site-nav.module.css'
 
-const SiteNav = ({className, isActive}) => {
+const SiteNav = React.forwardRef(({className, isActive}, ref) => {
   return (
-    <nav className={classNames(styles.nav, className)} {...(!isActive? {'aria-hidden':true} : {})}>
+    <nav className={classNames(styles.nav, className)} ref={ref} {...(!isActive? {'aria-hidden':true} : {})}>
       <h2 className={styles.title}>Menu</h2>
       <ul className={styles.menu}>
         <li><Link to="/">Home</Link></li>
@@ -15,6 +15,6 @@ const SiteNav = ({className, isActive}) => {
       </ul>
     </nav>
   )
-}
+})
 
 export default SiteNav

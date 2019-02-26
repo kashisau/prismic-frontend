@@ -8,6 +8,7 @@ class StandardLayout extends Component {
 
   pageHeadingGroup = React.createRef()
   menuButton = React.createRef()
+  siteNav = React.createRef()
 
   DEFAULT_PADDING_MIN = 4
   DEFAULT_PADDING_MAX = 24
@@ -45,8 +46,7 @@ class StandardLayout extends Component {
     }
 
     this.setState({ headerPadding: newHeaderPadding, lastScrollPos: scrollPos })
-
-    this.setHeaderPadding(newHeaderPadding)
+    this.setHeaderMargins(newHeaderPadding)
   }
 
   setMenuActive(newMenuActiveState) {
@@ -57,7 +57,7 @@ class StandardLayout extends Component {
     if (newMenuActiveState
         && this.state.menuActive !== newMenuActiveState) {
           const newPadding = this.DEFAULT_PADDING_MAX
-      this.setHeaderPadding(newPadding)
+      this.setHeaderMargins(newPadding)
       this.setState({
         headerPadding: newPadding
       })
@@ -66,12 +66,15 @@ class StandardLayout extends Component {
 
   }
 
-  setHeaderPadding(padding) {
+  setHeaderMargins(padding) {
     this.pageHeadingGroup.style.marginTop= `${padding}px`
     this.pageHeadingGroup.style.marginBottom = `${padding}px`
 
     this.menuButton.style.marginTop= `${padding}px`
     this.menuButton.style.marginBottom = `${padding}px`
+    
+    if (this.siteNav)
+      this.siteNav.style.marginBottom = `${padding}px`
   }
 
   componentDidMount() {
@@ -86,9 +89,6 @@ class StandardLayout extends Component {
 
     const {
       children,
-      // hasHeaderCollapsed = false,
-      // hasTitleActive = false,
-      // hasMenuFloat = true,
       subtitle,
       title
     } = this.props
@@ -119,7 +119,7 @@ class StandardLayout extends Component {
             className={styles.menuToggle}
             onClick={_ => { this.setMenuActive(!menuActive)}}
             ref={ref => this.menuButton = ref}>Menu</button>
-          <SiteNav className={styles.siteNav} isActive={menuActive} />
+          <SiteNav className={styles.siteNav} isActive={menuActive} ref={ref => this.siteNav = ref} />
         </header>
         <main className={styles.body}>
           {children}
