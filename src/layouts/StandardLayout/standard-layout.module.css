@@ -23,13 +23,13 @@
 /* Header collapse and expansion */
 .pageHeadingGroup,
 .menuToggle {
-  transition: margin-top 400ms ease-in-out, margin-bottom 400ms ease-in-out;
+  /* transition: margin-top 400ms ease-in-out, margin-bottom 400ms ease-in-out; */
 }
 
 .headerCollapsed .pageHeadingGroup,
 .headerCollapsed .menuToggle {
   margin: 0.25rem 1rem;
-  transition: margin-top 400ms ease-in-out 0, margin-bottom 400ms ease-in-out 0;
+  /* transition: margin-top 400ms ease-in-out 0, margin-bottom 400ms ease-in-out 0; */
 }
 
 .pageHeadingGroup {
@@ -62,7 +62,7 @@
 }
 
 .siteHeader .title {
-  font-size: 1.5rem;
+  font-size: 1rem;
   grid-row: 2 / 2;
 }
 
@@ -87,7 +87,7 @@
 /* Menu collapsed */
 .page {
   transform: translateY(calc(-100vh + 4.5rem));
-  transition: transform 400ms ease-in-out;
+  /* transition: transform 400ms ease-in-out; */
 }
 
 .page.menuFloat {
@@ -101,16 +101,15 @@
   display: grid;
   grid-auto-rows: auto auto;
   grid-template-columns: auto min-content;
-  transition: transform 400ms ease-in-out;
+  /* transition: transform 400ms ease-in-out; */
 }
 
 .menuFloat .siteHeader {
   position: fixed;
-  top: 0;
+  top: calc(-100vh + 4.5rem);
   left: 0;
   right: 0;
   width: 100%;
-  transform: translateY(calc(-100% + 5.5rem));
   z-index: 1;
 }
 
@@ -124,7 +123,7 @@
 }
 
 .menuFloat.menuActive .siteHeader {
-  transform: translateY(-1rem);
+  transform: translateY(calc(100vh - 5rem));
 }
 
 .siteNav {
@@ -157,7 +156,7 @@
 
 .body {
   margin: 1em;
-  transition: padding 400ms ease-in-out;
+  /* transition: padding 400ms ease-in-out; */
 }
 .menuFloat .body {
   margin: 1em;
@@ -165,7 +164,7 @@
 }
 .menuFloat.headerCollapsed .body {
   margin: 1em;
-  padding-top: 3em;
+  padding-top: 4rem;
 }
 
 @media screen and (min-width: 768px) {
@@ -270,7 +269,7 @@
   .menuToggle {
     display: none;
   }
-  
+
   .menuFloat .body {
     margin: 1em;
     padding-top: 9.5em;

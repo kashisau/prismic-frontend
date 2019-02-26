@@ -10,7 +10,7 @@ const SiteNav = ({className, isActive}) => {
       <h2 className={styles.title}>Menu</h2>
       <ul className={styles.menu}>
         <li><Link to="/">Home</Link></li>
-        <li><Link to="/">Menu item 1</Link></li>
+        <li><Link to="/photos">Menu item 1</Link></li>
         <li><Link to="/">Menu item 2</Link></li>
       </ul>
     </nav>
