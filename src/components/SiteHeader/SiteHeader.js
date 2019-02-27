@@ -1,7 +1,8 @@
 import React, { Component, createRef, forwardRef } from 'react'
 import SiteNav from '../SiteNav'
+import classNames from 'classnames/bind'
 
-import styles from './site-header-mobile'
+import styles from './site-header-mobile.css'
 
 class SiteHeader extends Component {
 
@@ -14,7 +15,7 @@ class SiteHeader extends Component {
 
   state = {
     menuActive: false,
-    hidePageHeadings: false,
+    siteNameActive: false,
     headerPadding: 24,
     lastScrollPos: 0
   }
@@ -30,17 +31,17 @@ class SiteHeader extends Component {
   }
 
   render() {
-    const { menuActive, hidePageName } = this.state
+    const { menuActive, siteNameActive } = this.state
     const { title, subtitle } = this.props
 
     const classes = classNames.bind(styles)
     const activeClasses = classes(
-      { 'hidePageHeadings': hidePageHeadings },
+      { 'siteNameActive': siteNameActive },
       { 'menuActive': menuActive }
     )
 
     return (
-      <header className={classNames('siteHeader', activeClasses)} ref={this.props.innerRef}>
+      <header className={classNames(styles.siteHeader, activeClasses)} ref={this.props.innerRef}>
         <div className={styles.logos}>
           <span className={styles.logoType}>Sliding menu</span>
           <span className={styles.logoTypeSubtitle}>Standard web app</span>
