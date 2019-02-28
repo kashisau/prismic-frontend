@@ -2,7 +2,7 @@ import React, { Component, createRef, forwardRef } from 'react'
 import SiteNav from '../SiteNav'
 import classNames from 'classnames/bind'
 
-import styles from './site-header-mobile.css'
+import styles from './site-header.module.css'
 
 class SiteHeader extends Component {
 
@@ -14,13 +14,15 @@ class SiteHeader extends Component {
   DEFAULT_PADDING_MAX = 24
 
   state = {
-    menuActive: false,
+    menuActive: true,
     siteNameActive: false,
-    headerPadding: 24,
+    headerPadding: this.DEFAULT_PADDING_MIN,
     lastScrollPos: 0
   }
 
-  watchScroll = () =>  {}
+  watchScroll = () =>  {
+
+  }
 
   componentDidMount() {
     window.addEventListener('scroll', this.watchScroll)

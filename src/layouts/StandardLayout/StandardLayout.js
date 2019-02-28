@@ -9,12 +9,17 @@ class StandardLayout extends Component {
 
   render() {
     const {
-      children
+      children,
+      title,
+      subtitle
     } = this.props
 
     return (
       <div className={styles.page}>
-        <SiteHeader innerRef={this.siteHeader} />
+        <SiteHeader
+          innerRef={this.siteHeader}
+          title={title}
+          subtitle={subtitle} />
         <main className={styles.body}>
           {children}
         </main>
