@@ -23,7 +23,7 @@
   margin: 0.5rem 1rem;
 
   transition:
-    margin 400ms ease-in-out,
+    /* margin 400ms ease-in-out, */
     opacity 400ms ease-in-out,
     transform 400ms ease-in-out;
 }
