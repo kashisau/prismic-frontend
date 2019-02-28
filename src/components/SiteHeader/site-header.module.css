@@ -3,27 +3,67 @@
   display: grid;
   grid-template-rows: auto min-content;
   grid-template-columns: auto min-content;
-  transition: transform 400ms ease-in-out;
-
+  
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
-  bottom: 0;
   z-index: 1;
 
-  transform: translateY(-100vh);
-}
-
-.siteHeader.menuActive {
-  transform: translateY(0);
+  transform: translateY(calc(-100vh + 4.5rem));
+  transition: transform 400ms ease-in-out;
 }
 
 .logos,
 .pageHeadings {
   grid-row: 2 / 3;
   grid-column: 1 / 2;
-  background-color: #2F2F2F;
+
+  align-self: center;
+  margin: 0.5rem 1rem;
+
+  transition:
+    margin 400ms ease-in-out,
+    opacity 400ms ease-in-out,
+    transform 400ms ease-in-out;
+}
+
+.logos {
+  transform: translateY(-100%);
+  opacity: 0;
+}
+
+/*----- siteNameActive animation -----*/
+.siteNameActive .logos {
+  transform: none;
+  opacity: 1;
+}
+.siteNameActive .pageHeadings {
+  transform: translateY(100%);
+  opacity: 0;
+}
+/*----- siteNameActive animation end -----*/
+
+
+.menuToggle {
+  grid-column: 2 / 3;
+  grid-row: 2 / 3;
+
+  justify-self: center;
+  align-self: center;
+  
+  height: 2rem;
+  width: 2rem;
+  
+  margin: 0.25rem 1rem;
+  padding: 0;
+  
+  font-size: 0.5rem;
+  line-height: 1;
+  text-transform: uppercase;
+  color: white;
+
+  transition: margin 400ms ease-in-out;
 }
 
 .logoType,
@@ -49,7 +89,7 @@
 }
 
 .logoType {
-  font-size: 1.25em;
+  font-size: 1.125em;
   line-height: 0.85;
   word-spacing: 100vw;
 }
@@ -58,27 +98,22 @@
   display: none;
 }
 
-.menuToggle {
-  grid-column: 2 / 3;
-  grid-row: 2 / 3;
-
-  justify-self: center;
-  
-  height: 2.5rem;
-  width: 2.5rem;
-  
-  margin: 0.25rem 0.5rem;
-  padding: 0;
-  
-  font-size: 0.5rem;
-  line-height: 1;
-  text-transform: uppercase;
-  color: white;
-}
-
 .siteNav {
   grid-row: 1 / 2;
   grid-column: 1 / 3;
   padding: 1.5rem;
   background: #171717;
+  height: calc(100vh - 7.5rem);
 }
+
+/*----- Menu active state -----*/
+.menuActive { /* (aka .siteheader) */
+  transform: translateY(0);
+}
+
+.menuActive .logos,
+.menuActive .pageHeadings,
+.menuActive .menuToggle {
+  margin: 1.5rem 1rem;
+}
+/*----- Menu active state end -----*/

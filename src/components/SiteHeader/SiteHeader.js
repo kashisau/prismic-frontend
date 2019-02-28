@@ -54,7 +54,7 @@ class SiteHeader extends Component {
         </hgroup>
         <button
           className={styles.menuToggle}
-          onClick={_ => { this.setMenuActive(!menuActive)}}
+          onClick={_ => this.setState({ menuActive: !menuActive})}
           ref={ref => this.menuButton}>Menu</button>
         <SiteNav className={styles.siteNav} isActive={menuActive} ref={this.siteNav} />
       </header>
