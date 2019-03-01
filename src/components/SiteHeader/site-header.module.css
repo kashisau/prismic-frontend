@@ -62,8 +62,6 @@
   line-height: 1;
   text-transform: uppercase;
   color: white;
-
-  /* transition: margin 400ms ease-in-out; */
 }
 
 .logoType,
@@ -122,3 +120,76 @@
   margin: 1.5rem 1rem;
 }
 /*----- Menu active state end -----*/
+
+@media screen and (min-width: 768px) {
+  .siteHeader {
+    grid-template-columns: 1fr 30% 1fr;
+    grid-auto-columns: min-content;
+    grid-template-rows: min-content;
+    transform: translateY(0);
+  }
+  .menuToggle {
+    display: none;
+  }
+  .logos,
+  .siteNameActive .logos {
+    grid-column: 1 / 2;
+    grid-row: 1 / 2;
+
+    transform: none;
+    opacity: 1;
+  }
+  .pageHeadings,
+  .siteNameActive .pageHeadings {
+    grid-column: 2 / 3;
+    grid-row: 1 / 2;
+
+    transform: none;
+    opacity: 1;
+  }
+
+  .logoTypeSubtitle {
+    display: block;
+    white-space: nowrap;
+  }
+
+  .title {
+    display: block;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+
+  .subtitle {
+    display: none;
+  }
+
+  .siteNav {
+    grid-column: 3 / 4;
+    grid-row: 1 / 2;
+
+    background-color: transparent;
+
+    height: auto;
+    padding: 0 1rem;
+  }
+}
+/* 
+@media screen and (min-width: 1280px) {
+  .siteHeader {
+    grid-template-columns: 1fr 240px 540px 500px 1fr;
+  }
+
+  .logos,
+  .siteNameActive .logos {
+    grid-column: 2 / 3;
+  }
+  .pageHeadings,
+  .siteNameActive .pageHeadings {
+    grid-column: 3 / 4;
+  }
+  .siteNav {
+    grid-column: 4 / 5;
+    grid-row: 1 / 2;
+  }
+} */

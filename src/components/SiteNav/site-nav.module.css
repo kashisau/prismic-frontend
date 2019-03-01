@@ -48,22 +48,26 @@
   }
   .nav {
     grid-auto-columns: auto;
+    justify-self: right;
   }
   .menu {
     grid-column: 1 / 1;
     display: grid;
     margin: 0;
+    justify-self: right;
   }
 
   .menu li {
     padding: 0;
     display: inline-block;
     grid-row: 1 / 1;
+    justify-self: right;
   }
   .menu li a {
-    display: block;
-    font-size: 1rem;
-    padding: 0.5em 1em;
+    display: inline-block;
+    font-size: 0.75rem;
+    padding: 0 1em;
+    vertical-align: baseline;
     white-space: nowrap;
   }
 

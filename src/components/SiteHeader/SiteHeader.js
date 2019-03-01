@@ -27,6 +27,8 @@ class SiteHeader extends Component {
     if (menuActive) return
 
     const { headerPadding, lastScrollPos, logos, pageHeadings, menuToggle } = this
+    const { title } = this.props
+
     const scrollPos = window.scrollY
     const scrollDelta = (scrollPos - lastScrollPos) / SCROLL_DAMPENER
     const newHeaderPadding =
@@ -40,19 +42,22 @@ class SiteHeader extends Component {
 
     if (newHeaderPadding === headerPadding) return
 
-    switch (newHeaderPadding) {
-      case DEFAULT_PADDING_MAX:
-        this.setState({ siteNameActive: true })
-        break
-      case DEFAULT_PADDING_MIN:
-        this.setState({ siteNameActive: false })
-        break
+    if (title) {
+      switch (newHeaderPadding) {
+        case DEFAULT_PADDING_MAX:
+          this.setState({ siteNameActive: true })
+          break
+        case DEFAULT_PADDING_MIN:
+          this.setState({ siteNameActive: false })
+          break
+      }
     }
 
     this.headerPadding = newHeaderPadding
     const marginString = `${newHeaderPadding}px`
 
     paddedElements.forEach(({current: element}) => {
+      if (!element) return
       element.style.marginTop = marginString
       element.style.marginBottom = marginString
     })
@@ -74,7 +79,7 @@ class SiteHeader extends Component {
 
     this.setState({
       menuActive: false,
-      siteNameActive: false
+      siteNameActive: title? false : true
     })
   }
 

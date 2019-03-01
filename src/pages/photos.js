@@ -36,7 +36,7 @@ const PhotosPage = ({data}) => {
 
   return (
     <StandardLayout
-      title="Kashi's Photos"
+      title="There was movement at the station for the word had passed around that the colt from Old Regret had got away."
       subtitle="Photos">
       <PhotosIndexLayout photos={photos}></PhotosIndexLayout>
       <Seo title="Photos" description="A collection of photos by Kashi Samaraweera" />
