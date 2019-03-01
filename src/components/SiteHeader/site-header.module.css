@@ -11,6 +11,9 @@
   right: 0;
   z-index: 1;
 
+  max-width: 80rem;
+  margin: 0 auto;
+
   transform: translateY(calc(-100vh + 4.5rem));
   transition: transform 400ms ease-in-out;
 }
