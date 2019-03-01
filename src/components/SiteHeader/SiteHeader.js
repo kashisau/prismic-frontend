@@ -65,6 +65,7 @@ class SiteHeader extends Component {
 
   toggleMenu = () => {
     const { menuActive } = this.state
+    const { title } = this.props
     const newMenuActive = !menuActive
 
     if (newMenuActive) {

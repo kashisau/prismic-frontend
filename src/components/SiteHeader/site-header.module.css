@@ -174,22 +174,3 @@
     padding: 0 1rem;
   }
 }
-/* 
-@media screen and (min-width: 1280px) {
-  .siteHeader {
-    grid-template-columns: 1fr 240px 540px 500px 1fr;
-  }
-
-  .logos,
-  .siteNameActive .logos {
-    grid-column: 2 / 3;
-  }
-  .pageHeadings,
-  .siteNameActive .pageHeadings {
-    grid-column: 3 / 4;
-  }
-  .siteNav {
-    grid-column: 4 / 5;
-    grid-row: 1 / 2;
-  }
-} */
