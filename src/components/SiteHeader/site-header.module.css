@@ -3,7 +3,8 @@
   display: grid;
   grid-template-rows: auto min-content;
   grid-template-columns: auto min-content;
-  
+
+  overflow: hidden;
   position: fixed;
   top: 0;
   left: 0;
@@ -20,10 +21,9 @@
   grid-column: 1 / 2;
 
   align-self: center;
-  margin: 0.5rem 1rem;
+  margin:  1.5rem 1rem;
 
   transition:
-    /* margin 400ms ease-in-out, */
     opacity 400ms ease-in-out,
     transform 400ms ease-in-out;
 }
@@ -51,19 +51,19 @@
 
   justify-self: center;
   align-self: center;
-  
+
   height: 2rem;
   width: 2rem;
-  
-  margin: 0.25rem 1rem;
+
+  margin: 1.5rem 1rem;
   padding: 0;
-  
+
   font-size: 0.5rem;
   line-height: 1;
   text-transform: uppercase;
   color: white;
 
-  transition: margin 400ms ease-in-out;
+  /* transition: margin 400ms ease-in-out; */
 }
 
 .logoType,
@@ -114,6 +114,11 @@
 .menuActive .logos,
 .menuActive .pageHeadings,
 .menuActive .menuToggle {
+  transition:
+    margin 400ms ease-in-out,
+    opacity 400ms ease-in-out,
+    transform 400ms ease-in-out;
+
   margin: 1.5rem 1rem;
 }
 /*----- Menu active state end -----*/
