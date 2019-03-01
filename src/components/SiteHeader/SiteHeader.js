@@ -19,7 +19,7 @@ class SiteHeader extends Component {
 
   state = {
     menuActive: false,
-    siteNameActive: false
+    siteNameActive: true
   }
 
   watchScroll = () =>  {
@@ -60,9 +60,8 @@ class SiteHeader extends Component {
 
   toggleMenu = () => {
     const { menuActive } = this.state
-    const { headerPadding } = this
-
     const newMenuActive = !menuActive
+
     if (newMenuActive) {
       // Set our header padding
       this.headerPadding = DEFAULT_PADDING_MAX
