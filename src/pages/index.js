@@ -6,10 +6,10 @@ import Seo from '../components/Seo'
 
 const IndexPage = ({data}) => {
   const homepageData = data.allPrismicHomePage.edges[0].node.data;
-  const { title, subtitle, body } = homepageData;
+  const { title, hero_blurb: heroBlurb, subtitle, body } = homepageData;
 
   return (
-    <FrontpageLayout>
+    <FrontpageLayout heroBlurb={heroBlurb}>
       <section dangerouslySetInnerHTML={{ __html: body.html}} />
       <Seo title={title.text} />
     </FrontpageLayout>
@@ -30,6 +30,9 @@ export const query = graphql`
             }
             subtitle {
               text
+            }
+            hero_blurb {
+              html
             }
             body {
               html

@@ -7,6 +7,7 @@
   display: block;
   overflow: hidden;
   height: calc(50vw - 1.5em);
+  max-height: 38.5em;
   position: relative;
   margin: 0.0625em;
   padding: 0;
