@@ -6,6 +6,8 @@ import styles from './site-header.module.css'
 
 const DEFAULT_PADDING_MIN = 4
 const DEFAULT_PADDING_MAX = 24
+const LOGO_SCALE_MIN = 1;
+const LOGO_SCALE_MAX = 1.5;
 const SCROLL_DAMPENER = 4
 
 class SiteHeader extends Component {
@@ -108,30 +110,32 @@ class SiteHeader extends Component {
     }
 
     return (
-      <header className={classNames(styles.siteHeader, activeClasses)} ref={this.props.innerRef}>
-        <div
-          className={styles.logos}
-          style={scrollMargins}
-          ref={this.logos}>
-          <span className={styles.logoType}>Sliding menu</span>
-          <span className={styles.logoTypeSubtitle}>Standard web app</span>
-        </div>
-        <hgroup
-          className={styles.pageHeadings}
-          style={scrollMargins}
-          ref={this.pageHeadings}>
-          {subtitle && <h2 className={styles.subtitle}>{subtitle}</h2>}
-          {title && <h1 className={styles.title}>{title}</h1>}
-        </hgroup>
-        <button
-          className={styles.menuToggle}
-          style={scrollMargins}
-          onClick={this.toggleMenu}
-          ref={this.menuToggle}>
-          Menu
-        </button>
-        <SiteNav className={styles.siteNav} isActive={menuActive} ref={this.siteNav} />
-      </header>
+      <div className={styles.headerBack}>
+        <header className={classNames(styles.siteHeader, activeClasses)} ref={this.props.innerRef}>
+          <div
+            className={styles.logos}
+            style={scrollMargins}
+            ref={this.logos}>
+            <span className={styles.logoType}>Sliding menu</span>
+            <span className={styles.logoTypeSubtitle}>Standard web app</span>
+          </div>
+          <hgroup
+            className={styles.pageHeadings}
+            style={scrollMargins}
+            ref={this.pageHeadings}>
+            {subtitle && <h2 className={styles.subtitle}>{subtitle}</h2>}
+            {title && <h1 className={styles.title}>{title}</h1>}
+          </hgroup>
+          <button
+            className={styles.menuToggle}
+            style={scrollMargins}
+            onClick={this.toggleMenu}
+            ref={this.menuToggle}>
+            Menu
+          </button>
+          <SiteNav className={styles.siteNav} isActive={menuActive} ref={this.siteNav} />
+        </header>
+      </div>
     )
   }
 }

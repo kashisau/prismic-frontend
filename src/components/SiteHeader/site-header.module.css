@@ -1,18 +1,20 @@
 .siteHeader {
-  background-color: #2F2F2F;
   display: grid;
+
   grid-template-rows: auto min-content;
   grid-template-columns: auto min-content;
 
-  overflow: hidden;
+  max-width: 80rem;
+  margin: 0 auto;
+
+  background-color: #2F2F2F;
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   z-index: 1;
 
-  max-width: 80rem;
-  margin: 0 auto;
+  overflow: hidden;
 
   transform: translateY(calc(-100vh + 4.5rem));
   transition: transform 400ms ease-in-out;
@@ -125,11 +127,22 @@
 /*----- Menu active state end -----*/
 
 @media screen and (min-width: 768px) {
+  .headerBack {
+    background-color: #2F2F2F;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1;
+  }
+
   .siteHeader {
     grid-template-columns: 1fr 30% 1fr;
     grid-auto-columns: min-content;
     grid-template-rows: min-content;
     transform: translateY(0);
+
+    position: static;
   }
   .menuToggle {
     display: none;
