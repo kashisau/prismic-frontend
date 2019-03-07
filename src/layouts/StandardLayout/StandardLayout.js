@@ -11,6 +11,7 @@ class StandardLayout extends Component {
     const {
       children,
       title,
+      canDock,
       subtitle
     } = this.props
 
@@ -19,7 +20,8 @@ class StandardLayout extends Component {
         <SiteHeader
           innerRef={this.siteHeader}
           title={title}
-          subtitle={subtitle} />
+          subtitle={subtitle}
+          canDock={canDock} />
         <main className={styles.body}>
           {children}
         </main>

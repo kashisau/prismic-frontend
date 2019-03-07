@@ -21,6 +21,7 @@ class SiteHeader extends Component {
 
   state = {
     menuActive: false,
+    docked: true,
     siteNameActive: true
   }
 
@@ -30,6 +31,7 @@ class SiteHeader extends Component {
 
     const { headerPadding, lastScrollPos, logos, pageHeadings, menuToggle } = this
     const { title } = this.props
+    const { docked } = this.state
 
     const scrollPos = window.scrollY
     const scrollDelta = (scrollPos - lastScrollPos) / SCROLL_DAMPENER
@@ -43,6 +45,9 @@ class SiteHeader extends Component {
     this.lastScrollPos = scrollPos
 
     if (newHeaderPadding === headerPadding) return
+
+    if (scrollPos <= 25) this.setState({ docked: true })
+    else if (scrollPos > 25 && docked) this.setState({ docked: false })
 
     if (title) {
       switch (newHeaderPadding) {
@@ -95,13 +100,14 @@ class SiteHeader extends Component {
   }
 
   render() {
-    const { menuActive, siteNameActive } = this.state
-    const { title, subtitle } = this.props
+    const { menuActive, siteNameActive, docked } = this.state
+    const { title, subtitle, canDock = false } = this.props
 
     const classes = classNames.bind(styles)
     const activeClasses = classes(
       { 'siteNameActive': siteNameActive },
-      { 'menuActive': menuActive }
+      { 'menuActive': menuActive },
+      { 'docked': canDock && docked }
     )
 
     const scrollMargins = {

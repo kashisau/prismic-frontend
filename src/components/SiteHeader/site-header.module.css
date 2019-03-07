@@ -17,7 +17,7 @@
   overflow: hidden;
 
   transform: translateY(calc(-100vh + 4.5rem));
-  transition: transform 400ms ease-in-out;
+  transition: transform 400ms ease-in-out, padding 400ms ease-in-out;
 }
 
 .logos,
@@ -72,9 +72,9 @@
 .logoType,
 .title {
   composes: h1 from '../../layouts/headings-common.css';
+  color: white;
   display: block;
   font-size: 1rem;
-  color: #F5F5F5;
   line-height: 1;
   padding: 0;
   transform-origin: 0 0;
@@ -83,11 +83,12 @@
 .logoTypeSubtitle,
 .subtitle {
   composes: h2 from '../../layouts/headings-common.css';
+  color: #BCBCBC;
   display: block;
   font-size: 0.5rem;
+  font-style: normal;
   line-height: 1;
   padding: 0.125rem 0 0 0;
-  color: #EAE9EF;
   text-transform: uppercase;
 }
 
@@ -144,6 +145,7 @@
 
     position: static;
   }
+
   .menuToggle {
     display: none;
   }
@@ -154,6 +156,8 @@
 
     transform: none;
     opacity: 1;
+
+    transform-origin: bottom left;
   }
   .pageHeadings,
   .siteNameActive .pageHeadings {
@@ -163,6 +167,17 @@
     transform: none;
     opacity: 1;
   }
+
+  /** Docked heading **/
+  .docked {
+    padding: 10em 0 0 0;
+    border-bottom: 1px solid #838383;
+  }
+  .docked .logos,
+  .docked .siteNameActive .logos {
+    transform: scale(2);
+  }
+  /** End docked heading **/
 
   .logoTypeSubtitle {
     display: block;
