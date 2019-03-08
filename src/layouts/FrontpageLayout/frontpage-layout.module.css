@@ -2,7 +2,8 @@
   background-color: #2f2f2f;
   margin: -1em;
   padding-top: 0em;
-  min-height: 50vh;
+  min-height: 30vh;
+  max-height: 40vh;
 }
 
 .hero {
@@ -26,10 +27,41 @@
   padding: 0 1rem;
 }
 
+.heroArticle {
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+  grid-template-rows: 1fr;
+}
+
+.heroImage {
+  margin-top: -5em;
+  box-shadow: rgba(0,0,0,0.5) 0 0 40px;
+}
+
+.title {
+  composes: h1 from '../../layouts/headings-common.css';
+  color: white;
+
+  line-height: 1;
+  padding: 0;
+}
+.subtitle {
+  composes: h2 from '../../layouts/headings-common.css';
+  color: #838383;
+}
+
+.heroArticle {
+  padding: 3em 1rem 1rem 1rem;
+}
+
 @media screen and (min-width: 768px) {
   .heroBack {
     padding-top: 10em;
+    margin-bottom: calc(75vw / 3 * 2 - 24rem);
+    min-height: 30vh;
+    max-height: 40rem;
   }
+
   .blurb {
     color: #e2e2e2;
     font-size: 1.5em;
@@ -40,5 +72,14 @@
 
   .pageTitle {
     font-size: 6rem;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .heroBack {
+    padding-top: 10em;
+    margin-bottom: 16rem;
+    min-height: 30vh;
+    max-height: 40rem;
   }
 }

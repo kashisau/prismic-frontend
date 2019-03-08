@@ -9,7 +9,7 @@ const IndexPage = ({data}) => {
   const { title, hero_blurb: heroBlurb, subtitle, body } = homepageData;
 
   return (
-    <FrontpageLayout heroBlurb={heroBlurb}>
+    <FrontpageLayout {...homepageData}>
       <section dangerouslySetInnerHTML={{ __html: body.html}} />
       <Seo title={title.text} />
     </FrontpageLayout>
@@ -36,6 +36,32 @@ export const query = graphql`
             }
             body {
               html
+            }
+            hero_title {
+              text
+            }
+            hero_content {
+              document {
+                data {
+                  title {
+                    text
+                  }
+                  photo_description {
+                    html
+                  }
+                  photo_file {
+                    localFile {
+                      ...exifData
+                      childImageSharp {
+                        fluid(maxWidth: 1024) {
+                          ...childImageSharpFluid
+                        }
+                      }
+                    }
+                    url
+                  }
+                }
+              }
             }
           }
         }
