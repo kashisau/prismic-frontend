@@ -8,12 +8,13 @@ import styles from './frontpage-layout.module.css'
 const FrontpageLayout = ({
     hero_blurb: heroBlurb,
     hero_title: heroTitle,
+    hero_subtitle: heroSubtitle,
     hero_content: heroData,
     children
   }) => {
   const hero = heroData.document[0].data
   const { title, photo_description: heroDescription, photo_file: photoFile } = hero
-console.log("photoFile: ", photoFile)
+  
   return (
     <StandardLayout canDock={true}>
       <div className={styles.heroBack}>
@@ -22,7 +23,7 @@ console.log("photoFile: ", photoFile)
           <h1 className={styles.pageTitle}>{heroTitle.text}</h1>
           <article className={styles.heroArticle}>
             <hgroup className={styles.heroHeadings}>
-              <h2 className={classnames(styles.title, styles.heroTitle)}>Photo</h2>
+              <h2 className={classnames(styles.title, styles.heroTitle)}>{heroSubtitle.text}</h2>
               <h3 className={classnames(styles.subtitle, styles.heroSubtitle)}>{title.text}</h3>
             </hgroup>
             <Img
@@ -32,7 +33,13 @@ console.log("photoFile: ", photoFile)
           </article>
         </div>
       </div>
-      {children}
+      <article className={styles.article}>
+        <hgroup className={styles.headings}>
+          <h2 className={classnames(styles.title, styles.heroTitle)}>Epilogue</h2>
+          <h3 className={classnames(styles.subtitle, styles.heroSubtitle)}>{title.text}</h3>
+        </hgroup>
+        {children}
+      </article>
     </StandardLayout>
   )
 }

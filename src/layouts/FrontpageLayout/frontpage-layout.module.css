@@ -1,6 +1,6 @@
 .heroBack {
   background-color: #2f2f2f;
-  margin: -1em;
+  margin: -1em -1em 0 -1em;
   padding-top: 0em;
   min-height: 30vh;
   max-height: 40vh;
@@ -54,9 +54,15 @@
   padding: 3em 1rem 1rem 1rem;
 }
 
+.article {
+  max-width: 80rem;
+  margin: 0 auto;
+}
+
 @media screen and (min-width: 768px) {
   .heroBack {
     padding-top: 10em;
+    margin: -1em;
     margin-bottom: calc(75vw / 3 * 2 - 24rem);
     min-height: 30vh;
     max-height: 40rem;

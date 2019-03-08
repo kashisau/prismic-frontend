@@ -25,7 +25,7 @@ class SiteHeader extends Component {
     siteNameActive: true
   }
 
-  watchScroll = () =>  {
+  watchScroll = () =>  window.requestAnimationFrame(() => {
     const { menuActive } = this.state
     if (menuActive) return
 
@@ -44,10 +44,10 @@ class SiteHeader extends Component {
 
     this.lastScrollPos = scrollPos
 
-    if (newHeaderPadding === headerPadding) return
-
     if (scrollPos <= 25) this.setState({ docked: true })
     else if (scrollPos > 25 && docked) this.setState({ docked: false })
+
+    if (newHeaderPadding === headerPadding) return
 
     if (title) {
       switch (newHeaderPadding) {
@@ -68,7 +68,7 @@ class SiteHeader extends Component {
       element.style.marginTop = marginString
       element.style.marginBottom = marginString
     })
-  }
+  })
 
   toggleMenu = () => {
     const { menuActive } = this.state
