@@ -36,8 +36,8 @@ const PhotosPage = ({data}) => {
 
   return (
     <StandardLayout
-      title="There was movement at the station for the word had passed around that the colt from Old Regret had got away."
-      subtitle="Photos">
+      title="Photos"
+      subtitle="Latest photos">
       <PhotosIndexLayout photos={photos}></PhotosIndexLayout>
       <Seo title="Photos" description="A collection of photos by Kashi Samaraweera" />
     </StandardLayout>
@@ -87,7 +87,7 @@ export const query = graphql`
   }
 
   query SitePhotoListQuery {
-    allPrismicPhoto {
+    allPrismicPhoto(sort:{ fields: [first_publication_date], order: DESC }) {
       edges {
         node {
           id

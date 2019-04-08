@@ -122,8 +122,8 @@ class SiteHeader extends Component {
             className={styles.logos}
             style={scrollMargins}
             ref={this.logos}>
-            <span className={styles.logoType}>Sliding menu</span>
-            <span className={styles.logoTypeSubtitle}>Standard web app</span>
+            <span className={styles.logoType}>Kashi Samaraweera</span>
+            <span className={styles.logoTypeSubtitle}>Web application developer</span>
           </div>
           <hgroup
             className={styles.pageHeadings}
