@@ -43,6 +43,9 @@ export const query = graphql`
             hero_subtitle {
               text
             }
+            hero_feature_blurb {
+              text
+            }
             hero_content {
               document {
                 data {

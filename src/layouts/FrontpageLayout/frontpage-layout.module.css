@@ -48,6 +48,7 @@
 .subtitle {
   composes: h2 from '../../layouts/headings-common.css';
   color: #838383;
+  padding: 0.5em 0.5em 0.5em 0;
 }
 
 .heroArticle {
@@ -85,7 +86,7 @@
   .heroBack {
     padding-top: 10em;
     margin-bottom: 16rem;
-    min-height: 30vh;
+    min-height: 48vh;
     max-height: 40rem;
   }
 }

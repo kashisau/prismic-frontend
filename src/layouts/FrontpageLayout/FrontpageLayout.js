@@ -9,6 +9,7 @@ const FrontpageLayout = ({
     hero_blurb: heroBlurb,
     hero_title: heroTitle,
     hero_subtitle: heroSubtitle,
+    hero_feature_blurb: heroFeatureBlurb,
     hero_content: heroData,
     children
   }) => {
@@ -23,8 +24,8 @@ const FrontpageLayout = ({
           <h1 className={styles.pageTitle}>{heroTitle.text}</h1>
           <article className={styles.heroArticle}>
             <hgroup className={styles.heroHeadings}>
-              <h2 className={classnames(styles.title, styles.heroTitle)}>{title.text}</h2>
-              <h3 className={classnames(styles.subtitle, styles.heroSubtitle)}>{heroSubtitle.text}</h3>
+              <h2 className={classnames(styles.title, styles.heroTitle)}>{heroSubtitle.text}</h2>
+              <h3 className={classnames(styles.subtitle, styles.heroSubtitle)}>{heroFeatureBlurb.text}</h3>
             </hgroup>
             <Img
               className={styles.heroImage}
