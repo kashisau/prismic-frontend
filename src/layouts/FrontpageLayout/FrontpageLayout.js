@@ -17,7 +17,7 @@ const FrontpageLayout = ({
   const { title, photo_description: heroDescription, photo_file: photoFile } = hero
   
   return (
-    <StandardLayout canDock={true}>
+    <StandardLayout>
       <div className={styles.heroBack}>
         <div className={styles.hero}>
           <p className={styles.blurb} dangerouslySetInnerHTML={{ __html: heroBlurb.html}} />
