@@ -62,8 +62,9 @@
 
 @media screen and (min-width: 768px) {
   .heroBack {
-    padding-top: 10em;
+    padding-top: 16em;
     margin: -1em;
+    margin-top: -10rem;
     margin-bottom: calc(75vw / 3 * 2 - 24rem);
     min-height: 30vh;
     max-height: 40rem;
@@ -84,7 +85,6 @@
 
 @media screen and (min-width: 1280px) {
   .heroBack {
-    padding-top: 10em;
     margin-bottom: 16rem;
     min-height: 48vh;
     max-height: 40rem;

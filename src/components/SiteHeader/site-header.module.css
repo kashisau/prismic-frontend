@@ -15,8 +15,6 @@
   right: 0;
   z-index: 1;
 
-  overflow: hidden;
-
   transform: translateY(calc(-100vh + 4.5rem));
   transition: transform 400ms ease-in-out, padding 400ms ease-in-out;
 }
@@ -90,7 +88,7 @@
   composes: h2 from '../../layouts/headings-common.css';
   color: #BCBCBC;
   display: block;
-  font-size: 0.5rem;
+  font-size: 0.5em;
   font-style: normal;
   line-height: 1;
   padding: 0.25rem 0 0 0;
@@ -160,16 +158,20 @@
   .menuToggle {
     display: none;
   }
-  .logos,
-  .siteNameActive .logos {
+
+  .logos {
     grid-column: 1 / 2;
     grid-row: 1 / 2;
-
-    transform: none;
     opacity: 1;
+    transform: scale(4) translateY(0.5rem);
+    transform-origin: top left;
+  }
 
+  .siteNameActive .logos {
+    transform: none;
     transform-origin: bottom left;
   }
+
   .pageHeadings,
   .siteNameActive .pageHeadings {
     grid-column: 2 / 3;
