@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="48px" height="48px" viewBox="0 0 48 48" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 51.3 (57544) - http://www.bohemiancoding.com/sketch -->
+    <title>button-home-active</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <filter x="-50.0%" y="-39.3%" width="186.7%" height="192.9%" filterUnits="objectBoundingBox" id="filter-1">
+            <feOffset dx="-2" dy="2" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="4" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.8 0" type="matrix" in="shadowBlurOuter1" result="shadowMatrixOuter1"></feColorMatrix>
+            <feMerge>
+                <feMergeNode in="shadowMatrixOuter1"></feMergeNode>
+                <feMergeNode in="SourceGraphic"></feMergeNode>
+            </feMerge>
+        </filter>
+    </defs>
+    <g id="button-home-active" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <circle id="Oval" fill="#1C1C1C" fill-rule="nonzero" cx="24" cy="24" r="23.9470866"></circle>
+        <g id="Group" filter="url(#filter-1)" transform="translate(10.000000, 10.000000)" fill-rule="nonzero">
+            <path d="M24.9269861,15.5543464 L24.9269861,26.4571014 C24.9271028,27.260181 24.2993273,27.9111632 23.525137,27.9111632 L18.0698719,27.9111632 L18.0698719,19.5623773 C18.0699886,18.4342906 17.1882329,17.5198905 16.1006799,17.5198905 L11.7222347,17.5198905 C10.634565,17.5198905 9.75292599,18.4342906 9.75292599,19.5623773 L9.75292599,27.9111632 L4.29777759,27.9111632 C3.52347062,27.9111632 2.8958118,27.260181 2.8958118,26.4571014 L2.8958118,15.3997817 L0.920436526,15.3859274 C0.0994634666,15.3801194 -0.30781477,14.3504059 0.272711298,13.7483079 L13.2574321,0.280962938 C13.6186276,-0.0936543128 14.2042869,-0.0936543128 14.5654824,0.280962938 L27.7271844,13.9317445 C28.3120271,14.5383196 27.893899,15.575172 27.0668593,15.569364 L24.9269861,15.5543464 Z" id="Combined-Shape" fill="#FFFFFF"></path>
+            <path d="M26.9269861,17.5683824 L26.9269861,26.4571014 C26.9271028,27.260181 26.2993273,27.9111632 25.525137,27.9111632 L24.9269861,27.9111632 L24.9269861,17.5543464 L26.9269861,17.5683824 Z M11.7533435,19.5198905 C11.7530656,19.534018 11.752926,19.5481807 11.752926,19.5623773 L11.752926,27.9111632 L9.75292599,27.9111632 L9.75292599,21.5623773 C9.75292599,20.4342906 10.634565,19.5198905 11.7222347,19.5198905 L11.7533435,19.5198905 Z M13.5073245,2.09611968 L15.2574321,0.280962938 C15.6186276,-0.0936543128 16.2042869,-0.0936543128 16.5654824,0.280962938 L29.7271844,13.9317445 C30.3120271,14.5383196 29.893899,15.575172 29.0668593,15.569364 L27.3662802,15.5574294 L14.5654824,2.28096294 C14.2792531,1.98409749 13.8520656,1.92248307 13.5073245,2.09611968 Z" id="Combined-Shape" fill="#666666"></path>
+        </g>
+    </g>
+</svg>

@@ -1,8 +1,0 @@
-@import url('../layouts-common.css');
-
-.pageMain {
-  padding: 0;
-  display: grid;
-  grid-template-columns: auto;
-  grid-template-rows: auto;
-}

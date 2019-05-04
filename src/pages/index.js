@@ -17,6 +17,16 @@ const IndexPage = ({data}) => {
 }
 
 export const query = graphql`
+  fragment childImageSharpFluid on ImageSharpFluid {
+    base64
+    aspectRatio
+    src
+    srcSet
+    srcWebp
+    srcSetWebp
+    sizes
+  }
+      
   query HomePageQuery {
     allPrismicHomePage {
       edges {
@@ -57,7 +67,6 @@ export const query = graphql`
                   }
                   photo_file {
                     localFile {
-                      ...exifData
                       childImageSharp {
                         fluid(maxWidth: 1024) {
                           ...childImageSharpFluid
