@@ -1,6 +1,6 @@
 import React, { Component, useState } from 'react'
 import SiteHeader from '../../components/SiteHeader'
-
+import SiteFooter from '../../components/SiteFooter'
 import styles from './standard-layout.module.css'
 
 class StandardLayout extends Component {
@@ -25,6 +25,7 @@ class StandardLayout extends Component {
         <main className={styles.body}>
           {children}
         </main>
+        <SiteFooter />
       </div>
     )
   }

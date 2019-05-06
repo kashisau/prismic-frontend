@@ -18,28 +18,25 @@ const FrontpageLayout = ({
   
   return (
     <StandardLayout>
-      <div className={styles.heroBack}>
-        <div className={styles.hero}>
-          <p className={styles.blurb} dangerouslySetInnerHTML={{ __html: heroBlurb.html}} />
-          <h1 className={styles.pageTitle}>{heroTitle.text}</h1>
-          <article className={styles.heroArticle}>
-            <hgroup className={styles.heroHeadings}>
-              <h2 className={classnames(styles.title, styles.heroTitle)}>{heroSubtitle.text}</h2>
-              <h3 className={classnames(styles.subtitle, styles.heroSubtitle)}>{heroFeatureBlurb.text}</h3>
-            </hgroup>
-            <Img
-              className={styles.heroImage}
-              fluid={photoFile.localFile.childImageSharp.fluid}
-              alt={title.text} />
-          </article>
+      <div className={styles.hero}>
+        <div className={styles.heroBack}>
+          <div className={styles.blurb} dangerouslySetInnerHTML={{ __html: heroBlurb.html}} />
+          <h1 className={styles.pageTitle}>Latest</h1>
         </div>
+          <article className={styles.heroArticle}>
+          <Img
+            className={styles.heroImage}
+            fluid={photoFile.localFile.childImageSharp.fluid}
+            alt={title.text} />
+          <hgroup>
+            <h2 className={classnames(styles.title, styles.heroTitle)}>{heroTitle.text}</h2>
+            <h3 className={classnames(styles.title, styles.heroSubtitle)}>{heroSubtitle.text}</h3>
+          </hgroup>
+          <p className={classnames(styles.subtitle, styles.heroBlurb)}>{heroFeatureBlurb.text}</p>
+        </article>
       </div>
       <article className={styles.article}>
-        <hgroup className={styles.headings}>
-          <h2 className={classnames(styles.title, styles.heroTitle)}>Epilogue</h2>
-          <h3 className={classnames(styles.subtitle, styles.heroSubtitle)}>{title.text}</h3>
-        </hgroup>
-        {children}
+        {/* {children} */}
       </article>
     </StandardLayout>
   )
