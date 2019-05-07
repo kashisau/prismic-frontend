@@ -17,14 +17,12 @@
 
 .logoType {
   composes: h1 from '../../layouts/headings-common.css';
+  text-transform: none;
   color: white;
   display: block;
   line-height: 1;
   padding: 0;
   transform-origin: 0 0;
-}
-
-.logoType {
   font-size: 1.5em;
   line-height: 0.85;
   word-spacing: 100vw;

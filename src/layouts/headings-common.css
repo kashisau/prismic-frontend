@@ -1,9 +1,11 @@
 
-h1, h2, h3
+h1, h2, h3,
 .h1, .h2, .h3 {
   font-family: 'Merriweather Sans', serif;
+  letter-spacing: -0.08em;
   font-weight: 800;
-  font-style: italic;
+  font-style: normal;
+  text-transform: uppercase;
   line-height: 0.85;
   padding: 0;
   margin: 0;
@@ -19,9 +21,11 @@ h1, .h1 {
 }
 
 h2, .h2 {
-  font-size: 1.8125em;
-  letter-spacing: -0.04em;
-  line-height: 1.25;
+  font-size: 2em;
   color: #0059BF;
-  padding: 0 0 0.5em 0;
+  margin: 1em 0;
+}
+
+hgroup h2+h3 {
+  margin-top: -1.66em;
 }

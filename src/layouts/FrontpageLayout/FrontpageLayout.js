@@ -29,8 +29,8 @@ const FrontpageLayout = ({
             fluid={photoFile.localFile.childImageSharp.fluid}
             alt={title.text} />
           <hgroup>
-            <h2 className={classnames(styles.title, styles.heroTitle)}>{heroTitle.text}</h2>
-            <h3 className={classnames(styles.title, styles.heroSubtitle)}>{heroSubtitle.text}</h3>
+            <h2 className={classnames(styles.heroTitle)}>{heroTitle.text}</h2>
+            <h3 className={classnames(styles.heroSubtitle)}>{heroSubtitle.text}</h3>
           </hgroup>
           <p className={classnames(styles.subtitle, styles.heroBlurb)}>{heroFeatureBlurb.text}</p>
         </article>
