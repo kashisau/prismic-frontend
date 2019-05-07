@@ -9,7 +9,7 @@ const FrontpageLayout = ({
     hero_blurb: heroBlurb,
     hero_title: heroTitle,
     hero_subtitle: heroSubtitle,
-    hero_feature_blurb: heroFeatureBlurb,
+    hero_article_blurb: heroArticleBlurb,
     hero_content: heroData,
     children
   }) => {
@@ -32,7 +32,7 @@ const FrontpageLayout = ({
             <h2 className={classnames(styles.heroTitle)}>{heroTitle.text}</h2>
             <h3 className={classnames(styles.heroSubtitle)}>{heroSubtitle.text}</h3>
           </hgroup>
-          <p className={classnames(styles.subtitle, styles.heroBlurb)}>{heroFeatureBlurb.text}</p>
+          <div className={classnames(styles.subtitle, styles.heroBlurb)} dangerouslySetInnerHTML={{ __html: heroArticleBlurb.html}} />
         </article>
       </div>
       <article className={styles.article}>

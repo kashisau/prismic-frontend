@@ -11,7 +11,7 @@
 .footerTitle {
   composes: h1 from '../../layouts/headings-common.css';
   color: white;
-  font-size: 1.5em;
+  font-size: 2em;
   text-transform: uppercase;
   padding: 0.66em 0;
 }

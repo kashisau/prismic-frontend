@@ -53,8 +53,11 @@ export const query = graphql`
             hero_subtitle {
               text
             }
-            hero_feature_blurb {
-              text
+            hero_article_blurb {
+              html
+            }
+            hero_link {
+              url
             }
             hero_content {
               document {
