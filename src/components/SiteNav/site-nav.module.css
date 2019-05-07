@@ -24,7 +24,6 @@
   font-size: 0.875em;
 }
 
-
 .menuItem img {
   grid-row: 1 / 1;
 }
@@ -40,4 +39,32 @@
 
 .menuItem a:hover {
   border-bottom: none;
+}
+
+@media screen and (min-width: 768px) {
+  .nav {
+    align-self: end;
+  }
+  .menu {
+    margin: 0;
+  }
+
+  .menuItem {
+    padding: 0;
+    line-height: 1;
+  }
+
+  .menuItem img {
+    display: none;
+  }
+
+  .menuItem a {
+    padding: 0 1em;
+  }
+
+  .menuItemText {
+    grid-row: 1 / 1;
+    padding: 0;
+    color: #bcbcbc;
+  }
 }

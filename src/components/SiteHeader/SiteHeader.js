@@ -24,15 +24,14 @@ class SiteHeader extends Component {
     return (
       <header className={styles.headerBack}>
         <div className={classNames(styles.siteHeader, activeClasses)} ref={this.props.innerRef}>
-          <div
-            className={styles.logos}>
+          <div className={styles.logos}>
             <span className={styles.logoType}>Kashi Samaraweera</span>
           </div>
           <hgroup
             className={styles.pageHeadings}>
             {title && <h1 className={styles.title}>{title}</h1>}
           </hgroup>
-          <SiteNav className={styles.siteNav} isActive={active} ref={this.siteNav} />
+          {/* <SiteNav className={styles.siteNav} isActive={active} ref={this.siteNav} /> */}
         </div>
       </header>
     )

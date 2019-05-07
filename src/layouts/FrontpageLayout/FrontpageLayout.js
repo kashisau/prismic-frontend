@@ -21,14 +21,14 @@ const FrontpageLayout = ({
       <div className={styles.hero}>
         <div className={styles.heroBack}>
           <div className={styles.blurb} dangerouslySetInnerHTML={{ __html: heroBlurb.html}} />
-          <h1 className={styles.pageTitle}>Latest</h1>
         </div>
-          <article className={styles.heroArticle}>
+        <h1 className={styles.pageTitle}>Latest<span className={styles.fullTitle}>&nbsp;work</span></h1>
+        <article className={styles.heroArticle}>
           <Img
             className={styles.heroImage}
             fluid={photoFile.localFile.childImageSharp.fluid}
             alt={title.text} />
-          <hgroup>
+          <hgroup className={styles.articleHeadings}>
             <h2 className={classnames(styles.heroTitle)}>{heroTitle.text}</h2>
             <h3 className={classnames(styles.heroSubtitle)}>{heroSubtitle.text}</h3>
           </hgroup>
