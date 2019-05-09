@@ -84,5 +84,6 @@
   .viewSource {
     grid-column: 3 / 4;
     display: block;
+    border-bottom: none;
   }
 }
