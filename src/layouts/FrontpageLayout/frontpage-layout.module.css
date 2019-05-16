@@ -120,6 +120,10 @@
     color: #838383;
   }
 
+  .heroBack {
+    padding: 0 1em;
+  }
+
   .hero {
     background-color: #2F2F2F;
   }
