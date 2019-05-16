@@ -9,10 +9,12 @@ const IndexPage = ({data}) => {
   const { title, hero_blurb: heroBlurb, subtitle, body } = homepageData;
 
   return (
+    <>
+    <Seo title={`${title.text} — ${subtitle.text}`} />
     <FrontpageLayout {...homepageData}>
       <section dangerouslySetInnerHTML={{ __html: body.html}} />
-      <Seo title={title.text} />
     </FrontpageLayout>
+    </>
   )
 }
 

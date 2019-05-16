@@ -2,7 +2,7 @@ import React from 'react'
 import Helmet from 'react-helmet'
 import { StaticQuery, graphql } from 'gatsby'
 
-const Seo = ({ siteMetadata, title, description, author, keywords }) => {
+const Seo = ({ siteMetadata, title, description, author, keywords, children }) => {
   const siteMetadataObj = siteMetadata.allPrismicSiteMetadata.edges["0"].node.data;
   const { site_name: titleObj, site_description: descriptionObj, keywords: keywordsObj, author: authorObj } = siteMetadataObj;
 
@@ -66,7 +66,9 @@ const Seo = ({ siteMetadata, title, description, author, keywords }) => {
               }
             : []
         )}
-    />
+    >
+    {children}
+    </Helmet>
   )
 }
 
