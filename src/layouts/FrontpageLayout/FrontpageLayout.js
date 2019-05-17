@@ -35,9 +35,6 @@ const FrontpageLayout = ({
           <div className={classnames(styles.subtitle, styles.heroBlurb)} dangerouslySetInnerHTML={{ __html: heroArticleBlurb.html}} />
         </article>
       </div>
-      <article className={styles.article}>
-        {/* {children} */}
-      </article>
     </StandardLayout>
   )
 }
