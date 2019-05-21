@@ -6,12 +6,13 @@ import Seo from '../components/Seo'
 
 const IndexPage = ({data}) => {
   const homepageData = data.allPrismicHomePage.edges[0].node.data;
+  const homepageWorkData = data.allPrismicWork.edges.reduce((works, workEdge) => { works.push(workEdge.node.data); return works; }, []);
   const { title, hero_blurb: heroBlurb, subtitle, body } = homepageData;
 
   return (
     <>
     <Seo title={`${title.text} — ${subtitle.text}`} />
-    <FrontpageLayout {...homepageData}>
+    <FrontpageLayout {...homepageData} featuredWorks={homepageWorkData}>
       <section dangerouslySetInnerHTML={{ __html: body.html}} />
     </FrontpageLayout>
     </>
@@ -79,6 +80,35 @@ export const query = graphql`
                       }
                     }
                     url
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+    allPrismicWork {
+      edges {
+        node {
+          id
+          first_publication_date
+          last_publication_date
+          data {
+            title {
+              text
+            }
+            org {
+              text
+            }
+            blurb {
+              html
+            }
+            product_image {
+              localFile {
+                childImageSharp {
+                  fluid(maxWidth: 1024) {
+                    ...childImageSharpFluid
                   }
                 }
               }
