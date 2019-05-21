@@ -52,9 +52,20 @@
   overflow-y: visible;
 }
 
-.heroImage {
+.heroImage,
+.workImage {
   box-shadow: rgba(0,0,0,0.5) 0 0 20px;
   width: 150%;
+}
+
+.latestWorkSpill {
+  margin: -1em;
+  padding: 1em;
+  overflow-x: hidden;
+}
+
+.workArticle:nth-child(2n) .workImage{
+  left: -50%;
 }
 
 .heroTitle {
@@ -62,6 +73,10 @@
 }
 .heroSubtitle {
   color: #2f2f2f;
+}
+
+.bodyTitle {
+  padding: 1em 0 0.1em 0;
 }
 
 @media screen and (min-width: 768px) {

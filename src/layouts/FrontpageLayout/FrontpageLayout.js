@@ -7,15 +7,11 @@ import styles from './frontpage-layout.module.css'
 
 const FrontpageLayout = ({
     hero_blurb: heroBlurb,
-    hero_title: heroTitle,
-    hero_subtitle: heroSubtitle,
-    hero_article_blurb: heroArticleBlurb,
-    hero_content: heroData,
+    workHero,
     featuredWorks,
     children
   }) => {
-  const hero = heroData.document[0].data
-  const { title, photo_description: heroDescription, photo_file: photoFile } = hero
+  const { title: heroTitle, org: heroSubtitle, blurb: heroArticleBlurb, product_image: heroProductImage } = workHero
   
   return (
     <StandardLayout>
@@ -27,8 +23,8 @@ const FrontpageLayout = ({
         <article className={styles.heroArticle}>
           <Img
             className={styles.heroImage}
-            fluid={photoFile.localFile.childImageSharp.fluid}
-            alt={title.text} />
+            fluid={heroProductImage.localFile.childImageSharp.fluid}
+            alt={heroTitle.text} />
           <hgroup className={styles.articleHeadings}>
             <h2 className={classnames(styles.heroTitle)}>{heroTitle.text}</h2>
             <h3 className={classnames(styles.heroSubtitle)}>{heroSubtitle.text}</h3>
@@ -36,21 +32,21 @@ const FrontpageLayout = ({
           <div className={classnames(styles.subtitle, styles.heroBlurb)} dangerouslySetInnerHTML={{ __html: heroArticleBlurb.html}} />
         </article>
       </div>
-      <section className={styles.latestWorkSpill}>
-        <h1>Previous<span className={styles.fullTitle}>&nbsp;work</span></h1>
-        {featuredWorks && featuredWorks.map((work, index) => 
-          <article key={index}>
-            <hgroup className={styles.articleHeadings}>
-              <h2 className={classnames(styles.heroTitle)}>{work.title.text}</h2>
-              <h3 className={classnames(styles.heroSubtitle)}>{work.org.text}</h3>
-            </hgroup>
+      {featuredWorks && <section className={styles.latestWorkSpill}>
+        <h1 className={styles.bodyTitle}>Previously<span className={styles.fullTitle}>&nbsp;working on</span></h1>
+        {featuredWorks.map((work, index) => 
+          <article className={styles.workArticle} key={index}>
             <Img
               className={styles.workImage}
               fluid={work.product_image.localFile.childImageSharp.fluid}
               alt={work.title.text} />
+            <hgroup className={styles.articleHeadings}>
+              <h2 className={classnames(styles.heroTitle)}>{work.title.text}</h2>
+              <h3 className={classnames(styles.heroSubtitle)}>{work.org.text}</h3>
+            </hgroup>
             <div dangerouslySetInnerHTML={{ __html: work.blurb.html }} />
           </article>)}
-        </section>
+        </section>}
     </StandardLayout>
   )
 }
