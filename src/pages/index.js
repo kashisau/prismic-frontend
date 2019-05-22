@@ -56,6 +56,9 @@ fragment workItem on PrismicWork {
     blurb {
       html
     }
+    url {
+      target
+    }
   }
 }
 

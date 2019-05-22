@@ -33,7 +33,7 @@ const FrontpageLayout = ({
         </article>
       </div>
       {featuredWorks && <section className={styles.latestWorkSpill}>
-        <h1 className={styles.bodyTitle}>Previously<span className={styles.fullTitle}>&nbsp;working on</span></h1>
+        <h1 className={styles.bodyTitle}>Previous<span className={styles.fullTitle}>&nbsp;working on</span></h1>
         {featuredWorks.map((work, index) => 
           <article className={styles.workArticle} key={index}>
             <Img
