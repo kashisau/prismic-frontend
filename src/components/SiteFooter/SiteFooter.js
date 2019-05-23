@@ -1,4 +1,5 @@
 import React from 'react'
+import { useStaticQuery, graphql } from "gatsby"
 import { Link } from 'gatsby'
 import classNames from 'classnames/bind'
 
@@ -8,12 +9,29 @@ import logoNetlify from '../../images/logo-netlify.svg'
 import logoPrismic from '../../images/logo-prismic.svg'
 import logoCloudflare from '../../images/logo-cloudflare.svg'
 
-const SiteFooter = React.forwardRef(({className}, ref) => {
+export default () => {
+  const SiteFooterQuery = useStaticQuery(graphql`
+  query SiteFooterQuery {
+    allPrismicSiteMetadata {
+      edges {
+        node {
+          data {
+            footer_blurb {
+              html
+            }
+          }
+        }
+      }
+    }
+  }
+  `)
+  console.log("SiteFooterQuery: ", SiteFooterQuery)
+  const footerBlurb = SiteFooterQuery.allPrismicSiteMetadata.edges[0].node.data.footer_blurb
   return (
-    <footer className={styles.footer} ref={ref}>
+    <footer className={styles.footer}>
       <div className={styles.footerContent}>
         <h1 className={styles.footerTitle}>Where I'm active</h1>
-        <p className={styles.footerContactBlurb}>Examples of my work can be found on&nbsp;<a href="https://github.com/kashisau">GitHub</a>&nbsp;or&nbsp;<a href="https://bitbucket.org/kashisau/">BitBucket</a>. You can keep up with my adventures via&nbsp;<a href="https://instagram.com/kashisamaraweera">Instagram</a> (or attempts to take a decent photo via my <a href="https://www.instagram.com/kashis.photo/">alternate Instagram account</a>), my journey as an Australian Volunteer through my co-authored blog, <a href="https://medium.com/the-unlikely-sherpas">The Unlikely Sherpas</a>; or connect to my professional network via&nbsp;<a href="https://au.linkedin.com/in/kashis">LinkedIn</a>&nbsp;and get in touch via email,&nbsp;<a href="mailto:Kashi%20Samaraweera%20%3Ckashi@kashis.com.au%3E">kashi@kashis.com.au</a>.</p>
+        <p className={styles.footerContactBlurb} dangerouslySetInnerHTML={{__html: footerBlurb.html}} />
         <div className={styles.viewSource}>
           <h1 className={styles.sourceTitle}>Built with the following</h1>
           <p>This is an open source project, built on the following technologies.</p>
@@ -26,6 +44,4 @@ const SiteFooter = React.forwardRef(({className}, ref) => {
       </div>
     </footer>
   )
-})
-
-export default SiteFooter
+}
