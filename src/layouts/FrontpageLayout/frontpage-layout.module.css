@@ -69,11 +69,11 @@
 }
 
 .workImage {
-  width: 125%;
+  width: 150%;
 }
 
 .workArticle:nth-child(2n) .workImage{
-  left: -25%;
+  left: -50%;
 }
 
 .heroTitle,
@@ -144,7 +144,7 @@
   .workArticle {
     margin: 0em -1em 4em 0;
     display: grid;
-    grid-template-columns: 25% auto;
+    grid-template-columns: 33% auto;
     grid-column-gap: 2em;
   }
 
@@ -153,15 +153,17 @@
   }
 
   .workImage {
+    width: 110%;
     grid-row: 1 / 4;
     grid-column: 2 / 3;
   }
 
   .workArticle:nth-child(2n) {
-    grid-template-columns: auto 25%;
+    grid-template-columns: auto 33%;
   }
 
   .workArticle:nth-child(2n) .workImage {
+    left: -10%;
     grid-column: 1 / 2;
   }
 

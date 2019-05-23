@@ -28,7 +28,7 @@ class SiteHeader extends Component {
             <span className={styles.logoType}>Kashi Samaraweera</span>
           </div>
           {title && <hgroup className={styles.pageHeadings}><h1 className={styles.title}>{title}</h1></hgroup>}
-          <SiteNav className={styles.siteNav} isActive={active} ref={this.siteNav} />
+          {/* <SiteNav className={styles.siteNav} isActive={active} ref={this.siteNav} /> */}
         </div>
       </header>
     )

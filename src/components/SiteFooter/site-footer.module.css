@@ -67,7 +67,7 @@
 
 @media screen and (min-width: 1024px) {
   .footerContent {
-    grid-template-columns: 25% 2fr 1fr;
+    grid-template-columns: 1fr 2fr 1fr;
   }
   .footerTitle {
     grid-row: 1 / 1;
