@@ -1,0 +1,90 @@
+.footer {
+  padding: 1em;
+  background-color: #2F2F2F;
+  color: #bcbcbc;
+}
+
+.footer a {
+  color: #53B0FF;
+}
+
+.footerContent {
+  max-width: 1280px;
+  margin: 0 auto;
+  display: grid;
+  grid-column-gap: 2em;
+}
+
+.footerTitle {
+  composes: h1 from '../../layouts/headings-common.css';
+  color: white;
+  font-size: 2em;
+  text-transform: uppercase;
+  padding: 0.66em 0;
+}
+
+.sourceTitle {
+  composes: h1 from '../../layouts/headings-common.css';
+  font-size: 1em;
+  text-transform: uppercase;
+  padding: 0.25em 0;
+  color: #bcbcbc;
+}
+
+.footerContactBlurb {
+  margin: 0;
+  padding: 0 0 1em 0;
+}
+
+.viewSource {
+  border-bottom: 1px solid #525252;
+  padding: 0 0 1em 0;
+}
+
+.providerLogo {
+  height: 1.25em;
+}
+
+.providers {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+
+  display: grid;
+  grid-template-rows: auto;
+  grid-template-columns: repeat(auto-fit, 3);
+  justify-content: space-between;
+}
+
+.provider {
+  grid-row: 1 / 2;
+}
+
+.githubLogo {
+  height: 1em;
+  padding-bottom: 0.1em;
+}
+
+@media screen and (min-width: 1024px) {
+  .footerContent {
+    grid-template-columns: 1fr 2fr 1fr;
+  }
+  .footerTitle {
+    grid-row: 1 / 1;
+    grid-column: 1 / 2;
+    max-width: 7em;
+    padding: 0.25em 0;
+  } 
+  
+  .footerContactBlurb {
+    grid-row: 1 / 1;
+    grid-column: 2 / 3;
+    border-bottom: 1px solid #525252;
+  }
+
+  .viewSource {
+    grid-column: 3 / 4;
+    display: block;
+    border-bottom: none;
+  }
+}

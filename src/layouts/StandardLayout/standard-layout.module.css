@@ -1,0 +1,6 @@
+@import url('../layouts-common.css');
+@import url('../headings-common.css');
+
+.body {
+  margin: 0 1em 1em 1em;
+}

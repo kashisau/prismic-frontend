@@ -1,0 +1,60 @@
+.headerBack {
+  background-color: #2F2F2F;
+  display: grid;
+  top: 0;
+  left: 0;
+  right: 0;
+
+  padding: 1.125rem 1rem;
+}
+
+.siteHeader {
+  display: grid;
+  padding: 1rem 0;
+}
+
+.logos,
+.pageHeadings {
+  grid-row: 1 / 1;
+  grid-column: 1 / 1;
+  margin: 0;
+}
+
+.logoType {
+  composes: h1 from '../../layouts/headings-common.css';
+  text-transform: none;
+  color: white;
+  display: block;
+  line-height: 1;
+  padding: 0;
+  transform-origin: 0 0;
+  font-size: 1.5em;
+  line-height: 0.85;
+  word-spacing: 100vw;
+}
+
+@media screen and (min-width: 768px) {
+  .logos {
+    grid-row: 1 / 1;
+    grid-column: 1 / 2;
+  }
+
+  .logoType {
+    font-size: 2em;
+  }
+
+  .pageHeadings {
+    display: none;
+  }
+  .siteNav {
+    grid-row: 1 / 1;
+    grid-column: 2 / 3;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .siteHeader {
+    max-width: 1280px;
+    margin: 0 auto;
+  }
+}

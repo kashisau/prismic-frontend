@@ -1,71 +1,54 @@
 import React from 'react'
-import Header from '../../components/Header'
+import StandardLayout from '../StandardLayout';
+import classnames from 'classnames/bind'
+import Img from 'gatsby-image'
 
 import styles from './frontpage-layout.module.css'
 
-class FrontpageLayout extends React.Component {
-
-  articleRef = React.createRef();
-
-  shadow = mouseEvent => {
-    const article = this.articleRef.current;
-
-    const mediaQueryMatches = window.matchMedia('screen and (min-width: 768px)');
-    if ( ! mediaQueryMatches.matches) {
-      article.style.boxShadow = "";
-      article.style.transform = "";
-      return;
-    }
-
-    const { clientX: x, clientY: y } = mouseEvent;
-    if (!x || !y) return;
-
-    const articleRect = article.getBoundingClientRect()
-    const { top, right, bottom, left } = articleRect;
-
-    const width = right - left;
-    const height = bottom - top;
-
-    const centreX = (left + right) / 2;
-    const centreY = (top + bottom) / 2;
-    const deltaX = x - centreX;
-    const deltaY = y - centreY;
-
-    const ratioX = Math.round(deltaX / (width/2) * 100) / 100;
-    const ratioY = Math.round(deltaY / (height/2) * 100) / 100;
-
-    const shadowX = ratioX*20;
-    const shadowY = ratioY*20;
-    const boxShadowString = `${-shadowX}px ${-shadowY}px 60px rgba(0,0,0,0.5)`;
-    article.style.boxShadow = boxShadowString;
-
-    const rotateX = ratioX * 2;
-    const rotateY = ratioY * 2;
-    const rotateXString = `rotateX(${-rotateX}deg)`;
-    const rotateYString = `rotateY(${-rotateY}deg)`;
-    article.style.transform = `${rotateXString} ${rotateYString}`;
-  }
-
-  componentDidMount() {
-    window.addEventListener('resize', this.shadow);
-  }
-  componentWillUnmount() {
-    window.removeEventListener('resize', this.shadow);
-  }
-
-  render() {
-    const { children, body, title, subtitle } = this.props;
-    return (
-      <article
-        className={styles.PageMain}
-        onMouseMove={this.shadow}
-        ref={this.articleRef}>
-        <Header siteTitle={title} subtitle={subtitle} />
-        <section className={styles.mainBody} dangerouslySetInnerHTML={{ __html: body}} />
-        {children}
-      </article>
-    )
-  }
+const FrontpageLayout = ({
+    hero_blurb: heroBlurb,
+    workHero,
+    featuredWorks,
+    children
+  }) => {
+  const { title: heroTitle, org: heroSubtitle, blurb: heroArticleBlurb, product_image: heroProductImage } = workHero
+  
+  return (
+    <StandardLayout>
+      <div className={styles.hero}>
+        <div className={styles.heroBack}>
+          <div className={styles.blurb} dangerouslySetInnerHTML={{ __html: heroBlurb.html}} />
+        </div>
+        <h1 className={styles.pageTitle}>Latest<span className={styles.fullTitle}>&nbsp;work</span></h1>
+        <article className={styles.heroArticle}>
+          <Img
+            className={styles.heroImage}
+            fluid={heroProductImage.localFile.childImageSharp.fluid}
+            alt={heroTitle.text} />
+          <hgroup className={styles.articleHeadings}>
+            <h2 className={classnames(styles.heroTitle)}>{heroTitle.text}</h2>
+            <h3 className={classnames(styles.heroSubtitle)}>{heroSubtitle.text}</h3>
+          </hgroup>
+          <div className={classnames(styles.subtitle, styles.heroBlurb)} dangerouslySetInnerHTML={{ __html: heroArticleBlurb.html}} />
+        </article>
+      </div>
+      {featuredWorks && <section className={styles.latestWorkSpill}>
+        <h1 className={styles.bodyTitle}>Previous<span className={styles.fullTitle}>&nbsp;work</span></h1>
+        {featuredWorks.map((work, index) => 
+          <article className={styles.workArticle} key={index}>
+            <Img
+              className={styles.workImage}
+              fluid={work.product_image.localFile.childImageSharp.fluid}
+              alt={work.title.text} />
+            <hgroup className={styles.workHeadings}>
+              <h2 className={styles.workTitle}>{work.title.text}</h2>
+              <h3 className={styles.workSubtitle}>{work.org.text}</h3>
+            </hgroup>
+            <div className={styles.workBlurb} dangerouslySetInnerHTML={{ __html: work.blurb.html }} />
+          </article>)}
+        </section>}
+    </StandardLayout>
+  )
 }
 
 export default FrontpageLayout
