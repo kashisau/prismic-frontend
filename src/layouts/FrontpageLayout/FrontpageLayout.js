@@ -33,18 +33,18 @@ const FrontpageLayout = ({
         </article>
       </div>
       {featuredWorks && <section className={styles.latestWorkSpill}>
-        <h1 className={styles.bodyTitle}>Previous<span className={styles.fullTitle}>&nbsp;working on</span></h1>
+        <h1 className={styles.bodyTitle}>Previous<span className={styles.fullTitle}>&nbsp;work</span></h1>
         {featuredWorks.map((work, index) => 
           <article className={styles.workArticle} key={index}>
             <Img
               className={styles.workImage}
               fluid={work.product_image.localFile.childImageSharp.fluid}
               alt={work.title.text} />
-            <hgroup className={styles.articleHeadings}>
-              <h2 className={classnames(styles.heroTitle)}>{work.title.text}</h2>
-              <h3 className={classnames(styles.heroSubtitle)}>{work.org.text}</h3>
+            <hgroup className={styles.workHeadings}>
+              <h2 className={styles.workTitle}>{work.title.text}</h2>
+              <h3 className={styles.workSubtitle}>{work.org.text}</h3>
             </hgroup>
-            <div dangerouslySetInnerHTML={{ __html: work.blurb.html }} />
+            <div className={styles.workBlurb} dangerouslySetInnerHTML={{ __html: work.blurb.html }} />
           </article>)}
         </section>}
     </StandardLayout>
