@@ -9,8 +9,8 @@ import logoPrismic from '../../images/logo-prismic.svg'
 
 const SiteFooter = ({}) => {
   const { prismicSiteMetadata } = useStaticQuery(query)
-
   const footerBlurbHtml = prismicSiteMetadata.data.footer_blurb.html
+  console.log(`footerBlurbHtml updated. Length: ${footerBlurbHtml && footerBlurbHtml.length}`)
   return (
     <footer className={styles.footer}>
       <div className={styles.footerContent}>
