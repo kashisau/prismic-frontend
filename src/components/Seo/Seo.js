@@ -65,7 +65,7 @@ const Seo = ({ siteMetadata, title, description, author, keywords, children }) =
           content: descriptionTag,
         },
         {
-          property: 'thubnail',
+          property: 'thumbnail',
           content: `${siteDomainEnv}${ogImageFile}`,
         }
       ]
