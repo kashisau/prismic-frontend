@@ -4,6 +4,9 @@ import { StaticQuery, graphql } from 'gatsby'
 
 const Seo = ({ siteMetadata, title, description, author, keywords, children }) => {
   const siteMetadataObj = siteMetadata.allPrismicSiteMetadata.edges["0"].node.data;
+  const ogImageFile = siteMetadata.allFile.edges["0"].node.publicURL;
+  const siteDomainEnv = process.env.SITE_DOMAIN || 'https://kashis.com.au';
+
   const { site_name: titleObj, site_description: descriptionObj, keywords: keywordsObj, author: authorObj } = siteMetadataObj;
 
   const siteTitle = titleObj.text;
@@ -42,6 +45,10 @@ const Seo = ({ siteMetadata, title, description, author, keywords, children }) =
           content: 'website',
         },
         {
+          property: 'og:image',
+          content: `${siteDomainEnv}${ogImageFile}`,
+        },
+        {
           name: 'twitter:card',
           content: 'summary',
         },
@@ -57,6 +64,10 @@ const Seo = ({ siteMetadata, title, description, author, keywords, children }) =
           name: 'twitter:description',
           content: descriptionTag,
         },
+        {
+          property: 'thubnail',
+          content: `${siteDomainEnv}${ogImageFile}`,
+        }
       ]
         .concat(
           keywordsTag.length > 0
@@ -91,6 +102,13 @@ query SiteMetatdataQuery {
             text
           }
         }
+      }
+    }
+  }
+  allFile(filter: {name: { eq :"og-image" }}) {
+    edges {
+      node {
+        publicURL
       }
     }
   }
