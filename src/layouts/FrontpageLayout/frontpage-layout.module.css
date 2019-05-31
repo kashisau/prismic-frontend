@@ -70,7 +70,6 @@
 
 .workImage {
   width: 150%;
-  position: relative;
 }
 
 .workArticle:nth-child(2n) .workImage{
