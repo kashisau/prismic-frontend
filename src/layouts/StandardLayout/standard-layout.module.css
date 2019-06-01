@@ -2,5 +2,12 @@
 @import url('../headings-common.css');
 
 .body {
-  margin: 0 1em 1em 1em;
+  margin: 6.75rem 1em 1em 1em;
+}
+
+
+@media screen and (min-width: 768px) {
+  .body {
+    margin-top: 7.75rem;
+  }
 }
