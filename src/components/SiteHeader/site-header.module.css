@@ -1,16 +1,19 @@
 .headerBack {
   background-color: #2F2F2F;
   display: grid;
+
+  position: fixed;
+  z-index: 1;
   top: 0;
   left: 0;
   right: 0;
 
-  padding: 1.125rem 1rem;
+  padding: 2.125rem 1rem;
 }
 
 .siteHeader {
   display: grid;
-  padding: 1rem 0;
+  padding: 0rem 0;
 }
 
 .logos,
@@ -27,7 +30,7 @@
   display: block;
   line-height: 1;
   padding: 0;
-  transform-origin: 0 0;
+  transform-origin: left bottom;
   font-size: 1.5em;
   line-height: 0.85;
   word-spacing: 100vw;
