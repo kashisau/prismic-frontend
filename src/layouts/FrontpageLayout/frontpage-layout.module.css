@@ -1,12 +1,12 @@
 .hero {
-  margin: -1em -1em -5em;
+  margin: -1rem -1em -5em;
   padding: 0 1em;
 }
 
 .heroBack {
   background-color: #2F2F2F;
-  margin: 0 -1em;
-  padding: 0 1em 5em;
+  margin: -8rem -1em;
+  padding: 8rem 1em 13em;
 }
 
 .blurb {
@@ -100,7 +100,8 @@
 
 @media screen and (min-width: 768px) {
   .heroBack {
-    padding: 0 1em 0.1em;
+    padding: 8rem 1em 0.1em;
+    margin-bottom: 0;
   }
   .blurb {
     padding-right: 30%;
@@ -191,7 +192,7 @@
   }
 
   .heroBack {
-    padding: 0 1em;
+    padding: 8em 1em 0;
   }
 
   .hero {
